@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Carent - create new account</title>
+	<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+	
+	<style>
+		body { 
+			background-color: #990000;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			}
+		#buttons {
+			margin: auto;
+			width: 300px;
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%);}
+		button, #button {
+			background-color: #b30000;
+			width: 100%;
+			border-radius: 8px;
+			border: 3px outset #cc0000;
+			font-family: 'Orbitron', sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			color: black;
+			padding-top: 7px;
+			padding-bottom: 7px;
+			text-shadow: 1px 1px 2px grey;
+			-webkit-transition: background-color 2s;
+			transition: background-color 2s;
+			}
+		button:hover, #button:hover {
+			background-color: #cc0000;
+			border-style: inset;
+		}
+		form {
+			font-family: 'Orbitron', sans-serif;
+			font-size: 15px;
+			text-align: center;
+			text-shadow: 1px 1px 2px grey;
+		}
+		input {
+			background-color: #ffcccc;
+			margin: 6px 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="buttons">
+		<img src="src/logo_final.jpg" alt="logo_final" id="logo">
+		<br><br>
+		<button type="button">I've already have an account</button>
+		<br><br>
+		<form>
+			<fieldset>
+			<legend>Create new account</legend>
+			<br>
+			First name: <br>
+			<input type="text" name="firstname" placeholder="John" maxlength="20"><br>
+			Last name: <br>
+			<input type="text" name="lastname" placeholder="Doe" maxlength="30"><br>
+			Release date of driver license: <br>
+			<input type="date" name="dr_lic_date"><br>
+			ID number: <br>
+			<input type="text" name="id_number" placeholder="AAA123456" maxlength="20"><br>
+			Email address: <br>
+			<input type="email" name="email" placeholder="example@example.com" maxlength="40"><br>
+			Password: <br>
+			<input type="password" name="password" maxlength="20"><br>
+			<br>
+			<input type="submit" id="button" value="Create">
+			</fieldset>
+		</form>
+		<br>
+		<button type="button">Back to main menu</button>
+		<br><br>
+	</div>
+	
+	
+</body>
+</html>
