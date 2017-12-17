@@ -1,10 +1,11 @@
 package domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class Customer {
+public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "customer_id", nullable = false, columnDefinition = "INT(4) ZEROFILL")
@@ -19,7 +20,7 @@ public class Customer {
     private String idNumber;
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String password;
-    @Column(nullable = false, columnDefinition = "VARCHAR(40)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(40) UNIQUE")
     private String email;
 
     public Customer() {}

@@ -45,6 +45,48 @@
             text-align: center;
             text-shadow: 1px 1px 2px black;
         }
+        .button {
+            background-color: #b30000;
+            border-radius: 8px;
+            border: 2px #cc0000;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            text-shadow: 1px 1px 2px grey;
+            -webkit-transition: background-color 2s;
+            transition: background-color 2s;
+        }
+        .button:hover {
+            background-color: #cc0000;
+            border-style: inset;
+        }
+        #new_object_form {
+            width: 70%;
+            text-align: center;
+            margin-left: 15%;
+            font-weight: bold;
+        }
+        input {
+            background-color: #ffcccc;
+            margin: 5px 0;
+        }
+        table {
+            width: 90%;
+            font-size: 16px;
+        }
+        table, tr, td, th{
+            border: 3px solid white;
+            text-align: center;
+        }
+        th, td {
+            padding: 3px 7px;
+        }
+        td {
+            font-size: 14px;
+        }
 
 
     </style>
@@ -64,8 +106,8 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#" title="user_profile">Admin profile</a></li>
-                <li><a href="#" title="users">Users</a></li>
+                <li><a href="main_admin.html" title="user_profile">Admin profile</a></li>
+                <li><a href="users_admin.jsp" title="users">Users</a></li>
                 <li class="active"><a href="#" title="cars">Cars</a></li>
                 <li><a href="#" title="new_order">Orders</a></li>
                 <li><a href="#" title="logout">Log out</a></li>
@@ -76,11 +118,47 @@
 <section id="main_section">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-sm-6" id="content">
-
+            <div class="col-xs-12 col-sm-5">
+                <table style="width: 100%">
+                    <caption><h2>Add new Car</h2></caption>
+                </table>
+                <form action="CarToDb" method="post" id="new_object_form">
+                    <fieldset>
+                        Brand:<br>
+                        <input type="text" name="brand" maxlength="20" required><br>
+                        Model:<br>
+                        <input type="text" name="model" maxlength="20" required><br>
+                        Production Year:<br>
+                        <input type="number" name="yearProd" min="2000" max="2018" required><br>
+                        Engine:<br>
+                        <input type="text" name="engine" maxlength="20" required><br>
+                        Segment:<br>
+                        <input type="text" name="segment" maxlength="1" required><br>
+                        <br>
+                        <input class="button" type="submit" value="Add Car">
+                        <br>
+                    </fieldset>
+                </form>
             </div>
-            <div class="col-xs-12 col-sm-6" id="content">
-
+            <div class="col-xs-12 col-sm-7">
+                <table>
+                    <caption><h2>Cars</h2></caption>
+                    <tr style="font-size: 18px">
+                        <th style="width: 8%">id</th>
+                        <th style="width: 18%">Brand</th>
+                        <th style="width: 18%">Model</th>
+                        <th style="width: 23%">Engine</th>
+                        <th colspan="2">Options</th>
+                    </tr>
+                    <tr style="height: 45px">
+                        <td>082</td>
+                        <td>Toyota</td>
+                        <td>Corolla SE</td>
+                        <td>2.5 PB 150KM</td>
+                        <td><button class="button" style="font-size: 12px">Details</button></td>
+                        <td><button class="button" style="font-size: 12px">Remove</button></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

@@ -3,9 +3,50 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CaRent</title>
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+
+    <style>
+        body { background-color: #990000; }
+        #buttons {
+            margin: auto;
+            width: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);}
+        button {
+            background-color: #b30000;
+            width: 100%;
+            border-radius: 8px;
+            border: 3px #cc0000;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            text-shadow: 1px 1px 2px grey;
+            -webkit-transition: background-color 2s;
+            transition: background-color 2s;
+        }
+        button:hover {
+            background-color: #cc0000;
+            border-style: inset;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div id="buttons">
+    <img src="img/logo_final.jpg" alt="logo_final">
+    <br><br>
+    <a href="log_in_user.html"><button type="button">I'm a client</button></a>
+    <br><br>
+    <a href="log_in_admin.html"><button type="button">I'm an employee</button></a>
+</div>
 </body>
 </html>
+
+<!-- Naprawić guziki na stronach logowania, tabelki mają zaciągać dane z bazy, zrobić część orders
+-->

@@ -68,8 +68,8 @@
 			<div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#" title="user_profile">Admin profile</a></li>
-					<li><a href="#" title="users">Users</a></li>
-					<li><a href="#" title="cars">Cars</a></li>
+					<li><a href="users_admin.jsp" title="users">Users</a></li>
+					<li><a href="cars_admin.jsp" title="cars">Cars</a></li>
 					<li><a href="#" title="new_order">Orders</a></li>
 					<li><a href="#" title="logout">Log out</a></li>
 				</ul>
@@ -79,53 +79,11 @@
 	<section id="main_section">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6" id="content">
-					<h2>Customers</h2>
-					<br><br>
-					<form action="CustomerToDb" method="post" class="new_object_form">
-						<fieldset>
-							<legend>Add new Customer</legend>
-							First Name:<br>
-							<input type="text" name="firstname" maxlength="30" required><br>
-							Last Name:<br>
-							<input type="text" name="lastname" maxlength="40" required><br>
-							Release of driver license (yyyy-mm-dd):<br>
-							<input type="text" name="driverLicDate" maxlength="10" placeholder="yyyy-mm-dd" required><br>
-							<!-- TODO: make a regex for date checking -->
-							ID number:<br>
-							<input type="text" name="idNumber" maxlength="20" required><br>
-							Password:<br>
-							<input type="password" name="password" maxlength="20" required><br>
-							Email:<br>
-							<input type="email" name="email" maxlength="40" required><br>
-							<br>
-							<input type="submit" value="Add Customer">
-							<br>
-						</fieldset>
-					</form>
-					<br><br>
+				<div class="col-xs-12 col-sm-6">
+
 				</div>
-				<div class="col-xs-12 col-sm-6" id="content">
-					<h2>Cars</h2>
-					<br><br>
-					<form action="CarToDb" method="post" class="new_object_form">
-						<fieldset>
-							<legend>Add new Car</legend>
-							Brand:<br>
-							<input type="text" name="brand" maxlength="20" required><br>
-							Model:<br>
-							<input type="text" name="model" maxlength="20" required><br>
-							Production Year:<br>
-							<input type="number" name="yearProd" min="2000" max="2018" required><br>
-							Engine:<br>
-							<input type="text" name="engine" maxlength="20" required><br>
-							Segment:<br>
-							<input type="text" name="segment" maxlength="1" required><br>
-							<br>
-							<input type="submit" value="Add Car">
-							<br>
-						</fieldset>
-					</form>
+				<div class="col-xs-12 col-sm-6">
+
 				</div>
 			</div>
 		</div>

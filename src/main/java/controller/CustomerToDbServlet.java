@@ -5,6 +5,7 @@ import domain.Customer;
 import domain.CustomerDAO;
 import domain.DateFormat;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +17,13 @@ import java.time.LocalDate;
 @WebServlet(name = "CustomerToDbServlet", urlPatterns = "/CustomerToDb")
 public class CustomerToDbServlet extends HttpServlet {
 
+    @Inject
+    CustomerDAO customerDAO;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (request.getParameter("firstname") != null) {
-            CustomerDAO customerDAO = new CustomerDAO();
+
             Customer customer = new Customer();
 
             customer.setFirstname(request.getParameter("firstname"));

@@ -1,10 +1,11 @@
 package domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class Orders {
+public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="order_id", columnDefinition = "INT(7) ZEROFILL")

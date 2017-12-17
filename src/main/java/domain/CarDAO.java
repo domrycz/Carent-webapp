@@ -1,15 +1,19 @@
 package domain;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.*;
 import java.util.*;
 
+@RequestScoped
 public class CarDAO {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAPersistUnit");
+    @PersistenceUnit(name = "JPAPersistenceUnit")
+    private EntityManagerFactory emf;
 
     private List<Car> carList = new ArrayList<>();
 
     public void addCar(Car car) {
+
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
@@ -17,6 +21,7 @@ public class CarDAO {
             trans.begin();
             em.persist(car);
             trans.commit();
+
         } catch (Exception ex) {
             if(trans != null) {trans.rollback();}
             ex.printStackTrace();
@@ -44,6 +49,7 @@ public class CarDAO {
         } finally {
             em.close();
         }
+
         return carList;
     }
 
