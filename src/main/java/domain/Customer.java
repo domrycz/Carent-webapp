@@ -3,6 +3,9 @@ package domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Customer implements Serializable {
@@ -22,6 +25,9 @@ public class Customer implements Serializable {
     private String password;
     @Column(nullable = false, columnDefinition = "VARCHAR(40) UNIQUE")
     private String email;
+
+    @OneToMany(mappedBy = "customerId")
+    private List<Orders> orders;
 
     public Customer() {}
     public Customer(String firstname, String lastname, LocalDate driverLicDate, String idNumber, String password, String email) {
@@ -87,5 +93,13 @@ public class Customer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 }

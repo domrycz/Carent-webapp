@@ -12,6 +12,7 @@ public class CustomerDAO {
     private static List<Customer> customerList = new ArrayList<>();
 
     public void addCustomer(Customer customer) {
+
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
@@ -46,5 +47,24 @@ public class CustomerDAO {
             em.close();
         }
         return customerList;
+    }
+
+    public Customer getCustomerById(int id) {
+
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        Customer customer = null;
+
+        try {
+            trans.begin();
+            customer = em.find(Customer.class, id);
+            trans.commit();
+        } catch (Exception ex) {
+            if(trans != null) {trans.rollback();}
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return customer;
     }
 }

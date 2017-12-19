@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,10 +103,10 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#" title="user_profile">Admin profile</a></li>
+                <li><a href="main_admin.jsp" title="user_profile">Admin profile</a></li>
                 <li class="active"><a href="#" title="users">Users</a></li>
-                <li><a href="#" title="cars">Cars</a></li>
-                <li><a href="#" title="new_order">Orders</a></li>
+                <li><a href="cars_admin.jsp" title="cars">Cars</a></li>
+                <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
                 <li><a href="#" title="logout">Log out</a></li>
             </ul>
         </div>
@@ -157,6 +158,18 @@
                         <td><button class="button" style="font-size: 12px">View details</button></td>
                         <td><button class="button" style="font-size: 12px">Remove</button></td>
                     </tr>
+                    <c:forEach var="customer" items="${sessionScope.customerList}">
+                        <tr style="height: 43px">
+                            <td><c:if test="${customer.customerId < 10}">000${customer.customerId}</c:if>
+                                <c:if test="${customer.customerId > 9 && customer.customerId < 100}">00 ${customer.customerId}</c:if>
+                                <c:if test="${customer.customerId > 99 && customer.customerId < 1000}">0 ${customer.customerId}</c:if>
+                            </td>
+                            <td>${customer.firstname}</td>
+                            <td>${customer.lastname}</td>
+                            <td><button class="button" style="font-size: 12px">View details</button></td>
+                            <td><button class="button" style="font-size: 12px">Remove</button></td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
         </div>

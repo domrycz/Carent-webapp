@@ -1,25 +1,27 @@
 package domain;
 
-import javax.enterprise.context.RequestScoped;
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
+import java.util.ArrayList;
+import java.util.List;
 
-@RequestScoped
-public class CarDAO {
+public class OrdersDAO {
 
-    @PersistenceUnit(name = "JPAPersistenceUnit")
+    @PersistenceUnit(unitName = "JPAPersistenceUnit")
     private EntityManagerFactory emf;
 
-    private List<Car> carList = new ArrayList<>();
+    private List<Orders> ordersList = new ArrayList<>();
 
-    public void addCar(Car car) {
+    public void addOrder(Orders order) {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
         try {
             trans.begin();
-            em.persist(car);
+            em.persist(order);
             trans.commit();
         } catch (Exception ex) {
             if(trans != null) {trans.rollback();}
@@ -29,16 +31,16 @@ public class CarDAO {
         }
     }
 
-    public List<Car> showCars() {
-        int count = 1;
+    public List<Orders> showOrders() {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
+        int count = 1; //added to help with filling the ordersList
         try {
             trans.begin();
-            while(em.find(Car.class, count) != null) {
-                carList.add(em.find(Car.class, count));
+            while(em.find(Orders.class, count) != null) {
+                ordersList.add(em.find(Orders.class, count));
                 count++;
             }
             trans.commit();
@@ -48,19 +50,18 @@ public class CarDAO {
         } finally {
             em.close();
         }
-
-        return carList;
+        return ordersList;
     }
 
-    public Car getCarById(int id) {
+    public Orders getOrderById(int id) {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        Car car = null;
+        Orders order  = null;
 
         try {
             trans.begin();
-            car = em.find(Car.class, id);
+            order = em.find(Orders.class, id);
             trans.commit();
         } catch (Exception ex) {
             if(trans != null) {trans.rollback();}
@@ -68,7 +69,6 @@ public class CarDAO {
         } finally {
             em.close();
         }
-        return car;
+        return order;
     }
-
 }

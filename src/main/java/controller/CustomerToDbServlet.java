@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class CustomerToDbServlet extends HttpServlet {
 
     @Inject
-    CustomerDAO customerDAO;
+    private CustomerDAO customerDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -37,6 +37,6 @@ public class CustomerToDbServlet extends HttpServlet {
             customerDAO.addCustomer(customer);
         }
         // TODO Make a web pages with confirmation and error
-        response.sendRedirect("main_admin.html");
+        response.sendRedirect("main_admin.jsp");
     }
 }

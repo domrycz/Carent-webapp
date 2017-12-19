@@ -57,6 +57,11 @@
           <artifactId>jboss-servlet-api_3.1_spec</artifactId>
           <scope>provided</scope>
       </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>jstl</artifactId>
+          <version>1.2</version>
+      </dependency>
   </dependencies>
 
   <build>

@@ -76,7 +76,7 @@
         }
         table {
             width: 90%;
-            font-size: 16px;
+            font-size: 15px;
         }
         table, tr, td, th{
             border: 3px solid white;
@@ -109,8 +109,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="main_admin.jsp" title="user_profile">Admin profile</a></li>
                 <li><a href="users_admin.jsp" title="users">Users</a></li>
-                <li class="active"><a href="#" title="cars">Cars</a></li>
-                <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
+                <li><a href="cars_admin.jsp" title="cars">Cars</a></li>
+                <li class="active"><a href="#" title="new_order">Orders</a></li>
                 <li><a href="#" title="logout">Log out</a></li>
             </ul>
         </div>
@@ -121,54 +121,43 @@
         <div class="row">
             <div class="col-xs-12 col-sm-5">
                 <table style="width: 100%">
-                    <caption><h2>Add new Car</h2></caption>
+                    <caption><h2>Add new Order</h2></caption>
                 </table>
-                <form action="CarToDb" method="post" id="new_object_form">
+                <form action="OrderToDb" method="post" id="new_object_form">
                     <fieldset>
-                        Brand:<br>
-                        <input type="text" name="brand" maxlength="20" required><br>
-                        Model:<br>
-                        <input type="text" name="model" maxlength="20" required><br>
-                        Production Year:<br>
-                        <input type="number" name="yearProd" min="2000" max="2018" required><br>
-                        Engine:<br>
-                        <input type="text" name="engine" maxlength="20" required><br>
-                        Segment:<br>
-                        <input type="text" name="segment" maxlength="1" required><br>
+                        Customer id:<br>
+                        <input type="number" name="customerId" maxlength="4" required><br>
+                        Car id:<br>
+                        <input type="number" name="carId" maxlength="3" required><br>
+                        Start of rental:<br>
+                        <input type="date" name="startDate" placeholder="yyyy-mm-dd" required><br>
+                        End of rental:<br>
+                        <input type="date" name="endDate" placeholder="yyyy-mm-dd" required><br>
                         <br>
-                        <input class="button" type="submit" value="Add Car">
+                        <input class="button" type="submit" value="Add Order">
                         <br>
                     </fieldset>
                 </form>
             </div>
             <div class="col-xs-12 col-sm-7">
                 <table>
-                    <caption><h2>Cars</h2></caption>
+                    <caption><h2>Orders</h2></caption>
                     <tr style="font-size: 18px">
-                        <th style="width: 8%">id</th>
-                        <th style="width: 18%">Brand</th>
-                        <th style="width: 18%">Model</th>
-                        <th style="width: 23%">Engine</th>
+                        <th style="width: 15%">id</th>
+                        <th style="width: 25%">Customer id</th>
+                        <th style="width: 20%">Car id</th>
                         <th colspan="2">Options</th>
                     </tr>
-                    <tr style="height: 45px">
-                        <td>045</td>
-                        <td>Toyota</td>
-                        <td>Celica</td>
-                        <td>2.0 PB 150KM</td>
+                    <tr style="height: 35px">
+                        <td>0015467</td>
+                        <td>1234</td>
+                        <td>123</td>
                         <td><button class="button" style="font-size: 12px">Details</button></td>
                         <td><button class="button" style="font-size: 12px">Remove</button></td>
                     </tr>
-                    <c:forEach var="car" items="${sessionScope.carList}">
-                    <tr style="height: 45px">
-                        <td><c:if test="${car.carId < 10}">00${car.carId}</c:if>
-                            <c:if test="${car.carId > 9 && car.carId < 100}">0${car.carId}</c:if></td>
-                        <td>${car.brand}</td>
-                        <td>${car.model}</td>
-                        <td>${car.engine}</td>
-                        <td><button class="button" style="font-size: 12px">Details</button></td>
-                        <td><button class="button" style="font-size: 12px">Remove</button></td>
-                    </tr>
+                    <c:forEach var="orders" items="${sessionScope.ordersList}">
+
+
                     </c:forEach>
                 </table>
             </div>

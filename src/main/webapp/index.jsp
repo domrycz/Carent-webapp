@@ -17,10 +17,10 @@
             left: 50%;
             transform: translate(-50%, -50%);}
         button {
-            background-color: #b30000;
+            background-color: #990000;
             width: 100%;
             border-radius: 8px;
-            border: 3px #cc0000;
+            border: 1px solid #b30000;
             font-family: 'Orbitron', sans-serif;
             font-size: 20px;
             font-weight: bold;
@@ -33,7 +33,7 @@
         }
         button:hover {
             background-color: #cc0000;
-            border-style: inset;
+            border: 1px inset #990000;
         }
     </style>
 </head>
@@ -48,5 +48,6 @@
 </body>
 </html>
 
-<!-- Naprawić guziki na stronach logowania, tabelki mają zaciągać dane z bazy, zrobić część orders
+<!-- po dodaniu obiektu przez serwlet - zaktualizować atrybuty (carList itp.), po dodaniu obiektu
+przekierowywać na main_admin z jakimś info?
 -->
