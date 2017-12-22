@@ -96,8 +96,8 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" datatoggle="collapse"
-                    data-target="#navbar-collapse-1" ariaexpanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -111,7 +111,7 @@
                 <li><a href="users_admin.jsp" title="users">Users</a></li>
                 <li><a href="cars_admin.jsp" title="cars">Cars</a></li>
                 <li class="active"><a href="#" title="new_order">Orders</a></li>
-                <li><a href="#" title="logout">Log out</a></li>
+                <li><a href="logout" title="logout">Log out</a></li>
             </ul>
         </div>
     </div>
@@ -144,7 +144,7 @@
                     <caption><h2>Orders</h2></caption>
                     <tr style="font-size: 18px">
                         <th style="width: 15%">id</th>
-                        <th style="width: 25%">Customer id</th>
+                        <th style="width: 25%">Customer</th>
                         <th style="width: 20%">Car id</th>
                         <th colspan="2">Options</th>
                     </tr>
@@ -156,8 +156,14 @@
                         <td><button class="button" style="font-size: 12px">Remove</button></td>
                     </tr>
                     <c:forEach var="orders" items="${sessionScope.ordersList}">
-
-
+                        <tr style="height: 35px">
+                            <td>${orders.getOrderId()}</td>
+                            <td>${orders.getCustomerId().getFirstname().charAt(0)}. ${orders.getCustomerId().getLastname()}</td>
+                            <td><c:if test="${orders.getCarId().getCarId() < 10}">00${orders.getCarId().getCarId()}</c:if>
+                                <c:if test="${orders.getCarId().getCarId() > 9 && orders.getCarId().getCarId() < 100}">0${orders.getCarId().getCarId()}</c:if></td>
+                            <td><button class="button" type="button" style="font-size: 12px">Details</button></td>
+                            <td><button class="button" type="button" style="font-size: 12px">Remove</button></td>
+                        </tr>
                     </c:forEach>
                 </table>
             </div>

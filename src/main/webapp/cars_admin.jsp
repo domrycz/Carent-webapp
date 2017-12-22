@@ -96,8 +96,8 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" datatoggle="collapse"
-                    data-target="#navbar-collapse-1" ariaexpanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -111,7 +111,7 @@
                 <li><a href="users_admin.jsp" title="users">Users</a></li>
                 <li class="active"><a href="#" title="cars">Cars</a></li>
                 <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
-                <li><a href="#" title="logout">Log out</a></li>
+                <li><a href="logout" title="logout">Log out</a></li>
             </ul>
         </div>
     </div>
@@ -130,11 +130,11 @@
                         Model:<br>
                         <input type="text" name="model" maxlength="20" required><br>
                         Production Year:<br>
-                        <input type="number" name="yearProd" min="2000" max="2018" required><br>
+                        <input type="number" name="yearProd" placeholder="YYYY" min="2000" max="2018" required><br>
                         Engine:<br>
-                        <input type="text" name="engine" maxlength="20" required><br>
+                        <input type="text" name="engine" placeholder="1.0 PB 50KM" maxlength="20" required><br>
                         Segment:<br>
-                        <input type="text" name="segment" maxlength="1" required><br>
+                        <input type="text" name="segment" placeholder="A" maxlength="1" required><br>
                         <br>
                         <input class="button" type="submit" value="Add Car">
                         <br>
@@ -153,14 +153,15 @@
                     </tr>
                     <tr style="height: 45px">
                         <td>045</td>
-                        <td>Toyota</td>
-                        <td>Celica</td>
-                        <td>2.0 PB 150KM</td>
-                        <td><button class="button" style="font-size: 12px">Details</button></td>
-                        <td><button class="button" style="font-size: 12px">Remove</button></td>
+                        <td>Test</td>
+                        <td>Test</td>
+                        <td>Test Test</td>
+                        <td><button type="button" class="button" style="font-size: 12px">Details</button></td>
+                        <td><button type="button" class="button" style="font-size: 12px">Remove</button></td>
                     </tr>
                     <c:forEach var="car" items="${sessionScope.carList}">
                     <tr style="height: 45px">
+                        <!-- if's are used to put 0's before number -->
                         <td><c:if test="${car.carId < 10}">00${car.carId}</c:if>
                             <c:if test="${car.carId > 9 && car.carId < 100}">0${car.carId}</c:if></td>
                         <td>${car.brand}</td>

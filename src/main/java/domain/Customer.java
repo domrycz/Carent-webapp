@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@NamedQuery(name = "Customer.findParticular", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password")
 public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

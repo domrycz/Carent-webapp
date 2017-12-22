@@ -34,7 +34,7 @@ public class CarToDbServlet extends HttpServlet {
             carDAO.addCar(car);
 
         }
-        response.sendRedirect("main_admin.html");
+        response.sendRedirect("main_admin.jsp");
     }
 
 }

@@ -21,20 +21,23 @@ public class AdminLoginServlet extends HttpServlet {
     private final String PASS = "root";
 
     @Inject
-    CarDAO carDAO;
+    private CarDAO carDAO;
     @Inject
-    CustomerDAO customerDAO;
+    private CustomerDAO customerDAO;
     @Inject
-    OrdersDAO ordersDAO;
+    private OrdersDAO ordersDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if(username.equals(USERNAME) && password.equals(PASS)) {
             HttpSession session = request.getSession(true);
+            session.setAttribute("activeUser", username); //make a comment about it
+
             session.setAttribute("carList", carDAO.showCars());
             session.setAttribute("customerList", customerDAO.showCustomers());
             session.setAttribute("ordersList", ordersDAO.showOrders());
+
             request.getRequestDispatcher("main_admin.jsp").forward(request, response);
         } else {
             response.sendRedirect("log_in_admin.html");

@@ -3,4 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    
+    <filter>
+        <filter-name>AdminAuthFilter</filter-name>
+        <filter-class>filters.AdminAuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminAuthFilter</filter-name>
+        <url-pattern>/main_admin.jsp</url-pattern>
+        <url-pattern>/cars_admin.jsp</url-pattern>
+        <url-pattern>/orders_admin.jsp</url-pattern>
+        <url-pattern>/users_admin.jsp</url-pattern>
+    </filter-mapping>
 </web-app>

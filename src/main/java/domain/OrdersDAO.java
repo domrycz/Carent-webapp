@@ -36,7 +36,7 @@ public class OrdersDAO {
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
-        int count = 1; //added to help with filling the ordersList
+        long count = 1L; //added to help with filling the ordersList
         try {
             trans.begin();
             while(em.find(Orders.class, count) != null) {

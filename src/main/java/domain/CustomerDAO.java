@@ -11,8 +11,8 @@ public class CustomerDAO {
 
     private static List<Customer> customerList = new ArrayList<>();
 
-    public void addCustomer(Customer customer) {
-
+    public boolean addCustomer(Customer customer) {
+        boolean result = true;
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
@@ -23,9 +23,11 @@ public class CustomerDAO {
         } catch (Exception ex) {
             if(trans != null) {trans.rollback();}
             ex.printStackTrace();
+            result = false;
         } finally {
             em.close();
         }
+        return result;
     }
 
     public List<Customer> showCustomers() {
@@ -65,6 +67,23 @@ public class CustomerDAO {
         } finally {
             em.close();
         }
+        return customer;
+    }
+
+    public Customer checkCustomerInDb(String email, String password) {
+        Customer customer;
+
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Customer> query = em.createNamedQuery("Customer.findParticular", Customer.class);
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+
+        try {
+            customer = query.getSingleResult();
+        } catch (NoResultException | NonUniqueResultException nre) {
+            return null;
+        }
+
         return customer;
     }
 }

@@ -55,7 +55,7 @@
         .button {
             background-color: #b30000;
             border-radius: 8px;
-            border: 3px #cc0000;
+            border: 1px solid #b30000;
             font-family: 'Orbitron', sans-serif;
             font-size: 18px;
             font-weight: bold;
@@ -68,7 +68,7 @@
         }
         .button:hover {
             background-color: #cc0000;
-            border-style: inset;
+            border: 1px inset #990000;
         }
         input {
             background-color: #ffcccc;
@@ -107,7 +107,7 @@
                 <li class="active"><a href="#" title="users">Users</a></li>
                 <li><a href="cars_admin.jsp" title="cars">Cars</a></li>
                 <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
-                <li><a href="#" title="logout">Log out</a></li>
+                <li><a href="logout" title="logout">Log out</a></li>
             </ul>
         </div>
     </div>
@@ -133,7 +133,7 @@
                         Password:<br>
                         <input type="password" name="password" maxlength="20" required><br>
                         Email:<br>
-                        <input type="email" name="email" maxlength="40" required><br>
+                        <input type="email" name="email" placeholder="example@example.com" maxlength="40" required><br>
                         <br>
                         <input class="button" type="submit" value="Add Customer">
                         <br>
