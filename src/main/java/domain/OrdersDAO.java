@@ -4,62 +4,43 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAO {
+public class OrdersDAO {
 
     @PersistenceUnit(unitName = "JPAPersistenceUnit")
     private EntityManagerFactory emf;
 
-    private static List<Customer> customerList = new ArrayList<>();
+    private List<Orders> ordersList = new ArrayList<>();
+    private List<Orders> customerOrdersList = new ArrayList<>();
 
-    public boolean addCustomer(Customer customer) {
-        boolean result = true;
+    public void addOrder(Orders order) {
+
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
         try {
             trans.begin();
-            em.persist(customer);
+            em.persist(order);
             trans.commit();
         } catch (Exception ex) {
             if(trans != null) {trans.rollback();}
             ex.printStackTrace();
-            result = false;
         } finally {
             em.close();
         }
-        return result;
     }
 
-    public List<Customer> showCustomers() {
-        int count = 1;
+    public List<Orders> showOrders() {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
+        long count = 1L; //added to help with filling the ordersList
         try {
             trans.begin();
-            while(em.find(Customer.class, count) != null) {
-                customerList.add(em.find(Customer.class, count));
+            while(em.find(Orders.class, count) != null) {
+                ordersList.add(em.find(Orders.class, count));
                 count++;
             }
-        } catch (Exception ex) {
-            if(trans != null) {trans.rollback();}
-            ex.printStackTrace();
-        } finally {
-            em.close();
-        }
-        return customerList;
-    }
-
-    public Customer getCustomerById(int id) {
-
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        Customer customer = null;
-
-        try {
-            trans.begin();
-            customer = em.find(Customer.class, id);
             trans.commit();
         } catch (Exception ex) {
             if(trans != null) {trans.rollback();}
@@ -67,23 +48,36 @@ public class CustomerDAO {
         } finally {
             em.close();
         }
-        return customer;
+        return ordersList;
     }
 
-    public Customer checkCustomerInDb(String email, String password) {
-        Customer customer;
+    public Orders getOrderById(int id) {
 
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Customer> query = em.createNamedQuery("Customer.findParticular", Customer.class);
-        query.setParameter("email", email);
-        query.setParameter("password", password);
+        EntityTransaction trans = em.getTransaction();
+        Orders order  = null;
 
         try {
-            customer = query.getSingleResult();
-        } catch (NoResultException | NonUniqueResultException nre) {
-            return null;
+            trans.begin();
+            order = em.find(Orders.class, id);
+            trans.commit();
+        } catch (Exception ex) {
+            if(trans != null) {trans.rollback();}
+            ex.printStackTrace();
+        } finally {
+            em.close();
         }
+        return order;
+    }
 
-        return customer;
+    public List<Orders> showCustomerOrders(Customer customer) {
+
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Orders> query = em.createNamedQuery("Orders.findCustomersOrders", Orders.class);
+        query.setParameter("customer", customer);
+
+        customerOrdersList = query.getResultList();
+
+        return customerOrdersList;
     }
 }

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>CaRent - Log in</title>
-	<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
 	<style>
 		body { 
 			background-color: #990000;
@@ -19,10 +19,10 @@
 			transform: translate(-50%);
 			}
 		button, #button {
-			background-color: #b30000;
+			background-color: #990000;
 			width: 100%;
 			border-radius: 8px;
-			border: 3px outset #cc0000;
+			border: 1px solid #990000;
 			font-family: 'Orbitron', sans-serif;
 			font-size: 16px;
 			font-weight: bold;
@@ -35,7 +35,7 @@
 			}
 		button:hover, #button:hover {
 			background-color: #cc0000;
-			border-style: inset;
+			border: 1px inset #b30000;
 		}
 		form {
 			font-family: 'Orbitron', sans-serif;
@@ -51,11 +51,11 @@
 </head>
 <body>
 	<div id="buttons">
-		<img src="src/logo_final.jpg" alt="logo_final" id="logo">
+		<img src="img/logo_final.jpg" alt="logo_final" id="logo">
 		<br><br>
-		<button type="button">I don't have an account</button>
+		<a href="new_account.html"><button type="button">I don't have an account</button></a>
 		<br><br>
-		<form>
+		<form method="post" action="CustomerLogin">
 			<fieldset>
 			<legend>Log in</legend>
 			<br>
@@ -68,10 +68,8 @@
 			</fieldset>
 		</form>
 		<br>
-		<button type="button">Back to main menu</button>
+		<a href="index.jsp"><button type="button">Back to main menu</button></a>
 		<br><br>
 	</div>
-	
-	
 </body>
 </html>

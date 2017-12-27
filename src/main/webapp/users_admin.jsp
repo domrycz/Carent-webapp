@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CaRent - Admin main page</title>
+    <title>CaRent (admin) - Users options</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -46,6 +46,12 @@
             text-align: center;
             text-shadow: 1px 1px 2px black;
         }
+        #new_object_form {
+            width: 70%;
+            text-align: center;
+            margin-left: 15%;
+            font-weight: bold;
+        }
         .button {
             background-color: #b30000;
             border-radius: 8px;
@@ -54,8 +60,8 @@
             font-size: 18px;
             font-weight: bold;
             color: black;
-            padding-top: 2px;
-            padding-bottom: 2px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             text-shadow: 1px 1px 2px grey;
             -webkit-transition: background-color 2s;
             transition: background-color 2s;
@@ -63,12 +69,6 @@
         .button:hover {
             background-color: #cc0000;
             border: 1px inset #990000;
-        }
-        #new_object_form {
-            width: 70%;
-            text-align: center;
-            margin-left: 15%;
-            font-weight: bold;
         }
         input {
             background-color: #ffcccc;
@@ -78,7 +78,7 @@
             border: none;
         }
         table {
-            width: 90%;
+            width: 100%;
             font-size: 16px;
         }
         table, tr, td, th{
@@ -88,10 +88,6 @@
         th, td {
             padding: 3px 7px;
         }
-        td {
-            font-size: 14px;
-        }
-
 
     </style>
 </head>
@@ -111,8 +107,8 @@
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="main_admin.jsp" title="user_profile">Admin profile</a></li>
-                <li><a href="users_admin.jsp" title="users">Users</a></li>
-                <li class="active"><a href="#" title="cars">Cars</a></li>
+                <li class="active"><a href="#" title="users">Users</a></li>
+                <li><a href="cars_admin.jsp" title="cars">Cars</a></li>
                 <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
                 <li><a href="logout" title="logout">Log out</a></li>
             </ul>
@@ -122,59 +118,61 @@
 <section id="main_section">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-sm-5">
-                <table style="width: 100%">
-                    <caption><h2>Add new Car</h2></caption>
-                </table>
-                <form action="CarToDb" method="post" id="new_object_form">
+            <div class="col-xs-12 col-sm-6">
+                <h2>New Customer</h2>
+                <br><br>
+                <form action="CustomerToDb" method="post" id="new_object_form">
                     <fieldset>
-                        Brand:<br>
-                        <input type="text" name="brand" maxlength="20" required><br>
-                        Model:<br>
-                        <input type="text" name="model" maxlength="20" required><br>
-                        Production Year:<br>
-                        <input type="number" name="yearProd" placeholder="YYYY" min="2000" max="2018" required><br>
-                        Engine:<br>
-                        <input type="text" name="engine" placeholder="1.0 PB 50KM" maxlength="20" required><br>
-                        Segment:<br>
-                        <input type="text" name="segment" placeholder="A" maxlength="1" required><br>
+                        <legend>Add new Customer</legend>
+                        First Name:<br>
+                        <input type="text" name="firstname" maxlength="30" required><br>
+                        Last Name:<br>
+                        <input type="text" name="lastname" maxlength="40" required><br>
+                        Release of driver license (yyyy-mm-dd):<br>
+                        <input type="text" name="driverLicDate" maxlength="10" placeholder="yyyy-mm-dd" required><br>
+                        <!-- TODO: make a regex for date checking -->
+                        ID number:<br>
+                        <input type="text" name="idNumber" maxlength="20" required><br>
+                        Password:<br>
+                        <input type="password" name="password" maxlength="20" required><br>
+                        Email:<br>
+                        <input type="email" name="email" placeholder="example@example.com" maxlength="40" required><br>
                         <br>
-                        <input class="button" type="submit" value="Add Car">
+                        <input class="button" type="submit" value="Add Customer">
                         <br>
                     </fieldset>
                 </form>
+                <br><br>
             </div>
-            <div class="col-xs-12 col-sm-7 table-responsive">
+            <div class="col-xs-12 col-sm-6">
+                <h2>Customers</h2>
+                <br><br><br>
+                <div class="table-responsive">
                 <table class="table">
-                    <caption><h2>Cars</h2></caption>
                     <tr style="font-size: 18px">
-                        <th style="width: 8%">id</th>
-                        <th style="width: 18%">Brand</th>
-                        <th style="width: 18%">Model</th>
-                        <th style="width: 23%">Engine</th>
+                        <th style="width: 10%">id</th>
+                        <th style="width: 20%">First Name</th>
+                        <th style="width: 30%">Last Name</th>
                         <th colspan="2">Options</th>
                     </tr>
-                    <tr style="height: 45px">
-                        <td>045</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test Test</td>
-                        <td><button type="button" class="button" style="font-size: 12px">Details</button></td>
-                        <td><button type="button" class="button" style="font-size: 12px">Remove</button></td>
-                    </tr>
-                    <c:forEach var="car" items="${sessionScope.carList}">
-                    <tr style="height: 45px">
-                        <!-- if's are used to put 0's before number -->
-                        <td><c:if test="${car.carId < 10}">00${car.carId}</c:if>
-                            <c:if test="${car.carId > 9 && car.carId < 100}">0${car.carId}</c:if></td>
-                        <td>${car.brand}</td>
-                        <td>${car.model}</td>
-                        <td>${car.engine}</td>
-                        <td><button class="button" style="font-size: 12px">Details</button></td>
+                    <tr style="height: 43px">
+                        <td>0082</td>
+                        <td>Johnattan</td>
+                        <td>Kowalskiewicz</td>
+                        <td><button class="button" style="font-size: 12px">View details</button></td>
                         <td><button class="button" style="font-size: 12px">Remove</button></td>
                     </tr>
+                    <c:forEach var="customer" items="${sessionScope.customerList}">
+                        <tr style="height: 43px">
+                            <td>${customer.getCustomerIdZeroFill()}</td>
+                            <td>${customer.firstname}</td>
+                            <td>${customer.lastname}</td>
+                            <td><button class="button" style="font-size: 12px">View details</button></td>
+                            <td><button class="button" style="font-size: 12px">Remove</button></td>
+                        </tr>
                     </c:forEach>
                 </table>
+                </div>
             </div>
         </div>
     </div>

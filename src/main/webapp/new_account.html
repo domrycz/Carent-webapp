@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Carent - create new account</title>
+	<title>CaRent - create new account</title>
 	<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
 	
 	<style>
@@ -19,10 +19,10 @@
 			left: 50%;
 			transform: translate(-50%);}
 		button, #button {
-			background-color: #b30000;
+			background-color: #990000;
 			width: 100%;
 			border-radius: 8px;
-			border: 3px outset #cc0000;
+			border: 1px solid #990000;
 			font-family: 'Orbitron', sans-serif;
 			font-size: 16px;
 			font-weight: bold;
@@ -32,10 +32,10 @@
 			text-shadow: 1px 1px 2px grey;
 			-webkit-transition: background-color 2s;
 			transition: background-color 2s;
-			}
+		}
 		button:hover, #button:hover {
 			background-color: #cc0000;
-			border-style: inset;
+			border: 1px inset #b30000;
 		}
 		form {
 			font-family: 'Orbitron', sans-serif;
@@ -51,35 +51,34 @@
 </head>
 <body>
 	<div id="buttons">
-		<img src="src/logo_final.jpg" alt="logo_final" id="logo">
+		<img src="img/logo_final.jpg" alt="logo_final" id="logo">
 		<br><br>
-		<button type="button">I've already have an account</button>
+		<a href="log_in_user.html"><button type="button">I've already have an account</button></a>
 		<br><br>
-		<form>
+		<form action="NewCustomer" method="post">
 			<fieldset>
 			<legend>Create new account</legend>
 			<br>
 			First name: <br>
-			<input type="text" name="firstname" placeholder="John" maxlength="20"><br>
+			<input type="text" name="firstname" placeholder="John" maxlength="20" required><br>
 			Last name: <br>
-			<input type="text" name="lastname" placeholder="Doe" maxlength="30"><br>
+			<input type="text" name="lastname" placeholder="Doe" maxlength="30" required><br>
 			Release date of driver license: <br>
-			<input type="date" name="dr_lic_date"><br>
+			<input type="date" maxlength="10" placeholder="yyyy-mm-dd" name="dr_lic_date" required><br>
 			ID number: <br>
-			<input type="text" name="id_number" placeholder="AAA123456" maxlength="20"><br>
+			<input type="text" name="id_number" placeholder="AAA123456" maxlength="20" required><br>
 			Email address: <br>
-			<input type="email" name="email" placeholder="example@example.com" maxlength="40"><br>
+			<input type="email" name="email" placeholder="example@example.com" maxlength="40" required><br>
 			Password: <br>
-			<input type="password" name="password" maxlength="20"><br>
+			<input type="password" name="password" placeholder="********" maxlength="20"><br>
 			<br>
 			<input type="submit" id="button" value="Create">
 			</fieldset>
 		</form>
 		<br>
-		<button type="button">Back to main menu</button>
+		<a href="index.jsp"><button type="button">Back to main menu</button></a>
 		<br><br>
 	</div>
-	
-	
+
 </body>
 </html>

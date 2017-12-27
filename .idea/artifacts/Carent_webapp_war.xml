@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Carent-webapp:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="Carent-app.war">
-      <element id="artifact" artifact-name="Carent-webapp:war exploded" />
-    </root>
-  </artifact>
-</component>

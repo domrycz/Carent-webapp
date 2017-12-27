@@ -1,6 +1,5 @@
 package controller;
 
-
 import domain.Customer;
 import domain.CustomerDAO;
 import domain.DateFormat;
@@ -12,15 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
-@WebServlet(name = "CustomerToDbServlet", urlPatterns = "/CustomerToDb")
-public class CustomerToDbServlet extends HttpServlet {
+@WebServlet(name = "NewCustomerServlet", urlPatterns = "/NewCustomer")
+public class NewCustomerServlet extends HttpServlet {
 
     @Inject
     private CustomerDAO customerDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        boolean result = true;
 
         if (request.getParameter("firstname") != null) {
 
@@ -34,9 +36,12 @@ public class CustomerToDbServlet extends HttpServlet {
             customer.setEmail(request.getParameter("email"));
             customer.setPassword(request.getParameter("password"));
 
-            customerDAO.addCustomer(customer);
+            result = customerDAO.addCustomer(customer);
         }
-        // TODO Make a web pages with confirmation and error
-        response.sendRedirect("main_admin.jsp");
+        if(result) {
+            response.sendRedirect("login_user.html");
+        } else {
+            response.sendRedirect("default_error.html");
+        }
     }
 }

@@ -1,9 +1,10 @@
 package domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Car {
+public class Car implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "car_id", nullable = false, columnDefinition = "INT(3) ZEROFILL")
@@ -33,6 +34,10 @@ public class Car {
 
     public Integer getCarId() {
         return carId;
+    }
+
+    public String getCarIdZeroFill() {
+        return String.format("%03d", this.carId);
     }
 
     public void setCarId(Integer carId) {

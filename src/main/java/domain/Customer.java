@@ -1,10 +1,15 @@
 package domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-public class Customer {
+@NamedQuery(name = "Customer.findParticular", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password")
+public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "customer_id", nullable = false, columnDefinition = "INT(4) ZEROFILL")
@@ -19,8 +24,11 @@ public class Customer {
     private String idNumber;
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String password;
-    @Column(nullable = false, columnDefinition = "VARCHAR(40)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(40) UNIQUE")
     private String email;
+
+    @OneToMany(mappedBy = "customerId")
+    private List<Orders> orders;
 
     public Customer() {}
     public Customer(String firstname, String lastname, LocalDate driverLicDate, String idNumber, String password, String email) {
@@ -34,6 +42,10 @@ public class Customer {
 
     public Integer getCustomerId() {
         return customerId;
+    }
+
+    public String getCustomerIdZeroFill() {
+        return String.format("%04d", this.customerId);
     }
 
     public void setCustomerId(Integer customerId) {
@@ -86,5 +98,13 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 }
