@@ -8,11 +8,21 @@
         <filter-name>AdminAuthFilter</filter-name>
         <filter-class>filters.AdminAuthFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>CustomerAuthFilter</filter-name>
+        <filter-class>filters.CustomerAuthFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>AdminAuthFilter</filter-name>
         <url-pattern>/main_admin.jsp</url-pattern>
         <url-pattern>/cars_admin.jsp</url-pattern>
         <url-pattern>/orders_admin.jsp</url-pattern>
         <url-pattern>/users_admin.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerAuthFilter</filter-name>
+        <url-pattern>/main_customer.jsp</url-pattern>
+        <url-pattern>/cars_customer.jsp</url-pattern>
+        <url-pattern>/neworder_customer.jsp</url-pattern>
     </filter-mapping>
 </web-app>

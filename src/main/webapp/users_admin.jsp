@@ -74,6 +74,9 @@
             background-color: #ffcccc;
             margin: 5px 0;
         }
+        .table-responsive {
+            border: none;
+        }
         table {
             width: 100%;
             font-size: 16px;
@@ -92,8 +95,8 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" datatoggle="collapse"
-                    data-target="#navbar-collapse-1" ariaexpanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -144,7 +147,8 @@
             <div class="col-xs-12 col-sm-6">
                 <h2>Customers</h2>
                 <br><br><br>
-                <table>
+                <div class="table-responsive">
+                <table class="table">
                     <tr style="font-size: 18px">
                         <th style="width: 10%">id</th>
                         <th style="width: 20%">First Name</th>
@@ -160,10 +164,7 @@
                     </tr>
                     <c:forEach var="customer" items="${sessionScope.customerList}">
                         <tr style="height: 43px">
-                            <td><c:if test="${customer.customerId < 10}">000${customer.customerId}</c:if>
-                                <c:if test="${customer.customerId > 9 && customer.customerId < 100}">00 ${customer.customerId}</c:if>
-                                <c:if test="${customer.customerId > 99 && customer.customerId < 1000}">0 ${customer.customerId}</c:if>
-                            </td>
+                            <td>${customer.getCustomerIdZeroFill()}</td>
                             <td>${customer.firstname}</td>
                             <td>${customer.lastname}</td>
                             <td><button class="button" style="font-size: 12px">View details</button></td>
@@ -171,6 +172,7 @@
                         </tr>
                     </c:forEach>
                 </table>
+                </div>
             </div>
         </div>
     </div>

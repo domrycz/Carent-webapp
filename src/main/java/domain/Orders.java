@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@NamedQuery(name = "Orders.findCustomersOrders", query = "SELECT o FROM Orders o WHERE o.customerId = :customer")
 public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -32,6 +33,10 @@ public class Orders implements Serializable {
 
     public Long getOrderId() {
         return orderId;
+    }
+
+    public String getOrderIdZeroFill() {
+        return String.format("%07d", this.orderId);
     }
 
     public void setOrderId(Long orderId) {

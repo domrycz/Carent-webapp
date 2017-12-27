@@ -41,8 +41,7 @@ public class NewCustomerServlet extends HttpServlet {
         if(result) {
             response.sendRedirect("login_user.html");
         } else {
-            response.sendRedirect("index.jsp");
-            // TODO make a page with error
+            response.sendRedirect("default_error.html");
         }
     }
 }

@@ -1,7 +1,6 @@
 package controller;
 
-import domain.Customer;
-import domain.CustomerDAO;
+import domain.*;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -18,6 +17,10 @@ public class CustomerLoginServlet extends HttpServlet {
 
     @Inject
     private CustomerDAO customerDAO;
+    @Inject
+    private OrdersDAO ordersDAO;
+    @Inject
+    private CarDAO carDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -27,7 +30,16 @@ public class CustomerLoginServlet extends HttpServlet {
 
         if(customer != null) {
             HttpSession session = request.getSession(true);
-            session.setAttribute("customerName", customer.getFirstname());
+            String formatId = String.format("%04d", customer.getCustomerId()); //ZEROFILL of customer id
+            session.setAttribute("customerId", formatId);
+            session.setAttribute("activeUser", customer);
+
+            List<Orders> customersOrders = ordersDAO.showCustomerOrders(customer);
+            session.setAttribute("customersOrders", customersOrders);
+
+            List<Car> carList = carDAO.showCars();
+            session.setAttribute("carList", carList);
+
             request.getRequestDispatcher("main_customer.jsp").forward(request, response);
         } else {
             response.sendRedirect("index.jsp");

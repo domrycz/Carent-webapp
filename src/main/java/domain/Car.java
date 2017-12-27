@@ -36,6 +36,10 @@ public class Car implements Serializable {
         return carId;
     }
 
+    public String getCarIdZeroFill() {
+        return String.format("%03d", this.carId);
+    }
+
     public void setCarId(Integer carId) {
         this.carId = carId;
     }

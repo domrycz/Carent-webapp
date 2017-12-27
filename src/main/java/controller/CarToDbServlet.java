@@ -33,6 +33,8 @@ public class CarToDbServlet extends HttpServlet {
 
             carDAO.addCar(car);
 
+            request.getSession(false).removeAttribute("carList");
+            request.getSession(false).setAttribute("carList", carDAO.showCars());
         }
         response.sendRedirect("main_admin.jsp");
     }

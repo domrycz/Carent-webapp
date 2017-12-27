@@ -96,11 +96,11 @@
             <a class="navbar-brand" href="#" id="navbar-brand"><img src="img/logo_final.jpg" class="img-rounded" alt="logo_menu" id="logo_menu"></a>
         </div>
         <div class="collapse navbar-collapse navbar-right" id="navbar_1">
-            <p class="navbar-text">Hello ${sessionScope.customerName} </p>
+            <p class="navbar-text">Hello ${sessionScope.activeUser.getFirstname()} </p>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="main_customer.jsp" title="user_profile">Your profile</a></li>
-                <li><a href="cars.html" title="cars">Cars</a></li>
-                <li><a href="new_order.html" title="new_order">New order</a></li>
+                <li><a href="cars_customer.jsp" title="cars">Cars</a></li>
+                <li><a href="neworder_customer.jsp" title="new_order">New order</a></li>
                 <li><a href="logout" title="logout">Log out</a></li>
             </ul>
         </div>
@@ -115,27 +115,27 @@
                 <table id="profile_table">
                     <tr>
                         <th>Client number: </th>
-                        <td>0001</td>
+                        <td>${sessionScope.customerId}</td>
                     </tr>
                     <tr>
                         <th>First name: </th>
-                        <td>Zdzisek</td>
+                        <td>${sessionScope.activeUser.getFirstname()}</td>
                     </tr>
                     <tr>
                         <th>Last name: </th>
-                        <td>Nowak</td>
+                        <td>${sessionScope.activeUser.getLastname()}</td>
                     </tr>
                     <tr>
                         <th>Driver licence release date: </th>
-                        <td>01.08.2019</td>
+                        <td>${sessionScope.activeUser.getDriverLicDate()}</td>
                     </tr>
                     <tr>
                         <th>ID number: </th>
-                        <td>AKE921523</td>
+                        <td>${sessionScope.activeUser.getIdNumber()}</td>
                     </tr>
                     <tr>
                         <th>Email: </th>
-                        <td>jaja@panskie.pl</td>
+                        <td>${sessionScope.activeUser.getEmail()}</td>
                     </tr>
                 </table>
             </div>
@@ -146,15 +146,15 @@
                     <table class="order_table table">
                         <tr>
                             <th>Order no.: </th>
-                            <td>020001</td>
+                            <td>Test</td>
                             <th>From: </th>
-                            <td>01.08.2019</td>
+                            <td>Test TestT</td>
                         </tr>
                         <tr>
                             <th>Car: </th>
-                            <td>Opel Astra</td>
+                            <td>Test Test Test</td>
                             <th>To: </th>
-                            <td>01.08.2019</td>
+                            <td>Test TestT</td>
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center"><button type="button" class="button">Edit</button></td>
@@ -162,6 +162,27 @@
                         </tr>
                         <br><br>
                     </table>
+                    <c:forEach var="orders" items="${sessionScope.customersOrders}">
+                    <table class="order_table table">
+                        <tr>
+                            <th>Order no.: </th>
+                            <td>${orders.getOrderIdZeroFill()}</td>
+                            <th>From: </th>
+                            <td>${orders.getStartDate()}</td>
+                        </tr>
+                        <tr>
+                            <th>Car: </th>
+                            <td>${orders.getCarId().getBrand()} ${orders.getCarId().getModel()}</td>
+                            <th>To: </th>
+                            <td>${orders.getEndDate()}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center"><button type="button" class="button">Edit</button></td>
+                            <td colspan="2" style="text-align: center"><button type="button" class="button">Delete</button></td>
+                        </tr>
+                        <br><br>
+                    </table>
+                    </c:forEach>
                 </div>
             </div>
         </div>

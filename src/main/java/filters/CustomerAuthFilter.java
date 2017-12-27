@@ -7,21 +7,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-// @WebFilter(filterName = "AdminAuthFilter")
-public class AdminAuthFilter implements Filter {
+// @WebFilter(filterName = "CustomerAuthFilter")
+public class CustomerAuthFilter implements Filter {
 
     public void destroy() {    }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-        final String admin = "root";
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession(false);
-        if(session != null && session.getAttribute("activeUser") != null && session.getAttribute("activeUser").equals(admin)) {
+        if(session != null && session.getAttribute("activeUser") != null) {
             chain.doFilter(request, response);
         } else {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.sendRedirect("log_in_admin.html");
+            httpResponse.sendRedirect("log_in_user.html");
         }
     }
 

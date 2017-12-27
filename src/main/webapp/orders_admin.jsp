@@ -74,8 +74,10 @@
             background-color: #ffcccc;
             margin: 5px 0;
         }
+        .table-responsive {
+            border: none;
+        }
         table {
-            width: 90%;
             font-size: 15px;
         }
         table, tr, td, th{
@@ -88,8 +90,6 @@
         td {
             font-size: 14px;
         }
-
-
     </style>
 </head>
 <body>
@@ -135,12 +135,12 @@
                         <input type="date" name="endDate" placeholder="yyyy-mm-dd" required><br>
                         <br>
                         <input class="button" type="submit" value="Add Order">
-                        <br>
+                        <br><br>
                     </fieldset>
                 </form>
             </div>
-            <div class="col-xs-12 col-sm-7">
-                <table>
+            <div class="col-xs-12 col-sm-7 table-responsive">
+                <table class="table">
                     <caption><h2>Orders</h2></caption>
                     <tr style="font-size: 18px">
                         <th style="width: 15%">id</th>
@@ -157,10 +157,9 @@
                     </tr>
                     <c:forEach var="orders" items="${sessionScope.ordersList}">
                         <tr style="height: 35px">
-                            <td>${orders.getOrderId()}</td>
+                            <td>${orders.getOrderIdZeroFill()}</td>
                             <td>${orders.getCustomerId().getFirstname().charAt(0)}. ${orders.getCustomerId().getLastname()}</td>
-                            <td><c:if test="${orders.getCarId().getCarId() < 10}">00${orders.getCarId().getCarId()}</c:if>
-                                <c:if test="${orders.getCarId().getCarId() > 9 && orders.getCarId().getCarId() < 100}">0${orders.getCarId().getCarId()}</c:if></td>
+                            <td>${orders.getCarId().getCarIdZeroFill()}</td>
                             <td><button class="button" type="button" style="font-size: 12px">Details</button></td>
                             <td><button class="button" type="button" style="font-size: 12px">Remove</button></td>
                         </tr>

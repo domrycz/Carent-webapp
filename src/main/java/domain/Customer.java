@@ -44,6 +44,10 @@ public class Customer implements Serializable {
         return customerId;
     }
 
+    public String getCustomerIdZeroFill() {
+        return String.format("%04d", this.customerId);
+    }
+
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }

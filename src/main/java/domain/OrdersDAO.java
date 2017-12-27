@@ -1,9 +1,6 @@
 package domain;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,7 @@ public class OrdersDAO {
     private EntityManagerFactory emf;
 
     private List<Orders> ordersList = new ArrayList<>();
+    private List<Orders> customerOrdersList = new ArrayList<>();
 
     public void addOrder(Orders order) {
 
@@ -70,5 +68,16 @@ public class OrdersDAO {
             em.close();
         }
         return order;
+    }
+
+    public List<Orders> showCustomerOrders(Customer customer) {
+
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Orders> query = em.createNamedQuery("Orders.findCustomersOrders", Orders.class);
+        query.setParameter("customer", customer);
+
+        customerOrdersList = query.getResultList();
+
+        return customerOrdersList;
     }
 }

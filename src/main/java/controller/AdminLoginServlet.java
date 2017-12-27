@@ -32,7 +32,7 @@ public class AdminLoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         if(username.equals(USERNAME) && password.equals(PASS)) {
             HttpSession session = request.getSession(true);
-            session.setAttribute("activeUser", username); //make a comment about it
+            session.setAttribute("activeUser", username); //attribute used in AdminAuthFilter
 
             session.setAttribute("carList", carDAO.showCars());
             session.setAttribute("customerList", customerDAO.showCustomers());

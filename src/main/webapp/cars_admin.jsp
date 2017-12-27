@@ -74,6 +74,9 @@
             background-color: #ffcccc;
             margin: 5px 0;
         }
+        .table-responsive {
+            border: none;
+        }
         table {
             width: 90%;
             font-size: 16px;
@@ -141,8 +144,8 @@
                     </fieldset>
                 </form>
             </div>
-            <div class="col-xs-12 col-sm-7">
-                <table>
+            <div class="col-xs-12 col-sm-7 table-responsive">
+                <table class="table">
                     <caption><h2>Cars</h2></caption>
                     <tr style="font-size: 18px">
                         <th style="width: 8%">id</th>
