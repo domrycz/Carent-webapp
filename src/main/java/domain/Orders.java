@@ -6,7 +6,10 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@NamedQuery(name = "Orders.findCustomersOrders", query = "SELECT o FROM Orders o WHERE o.customerId = :customer")
+@NamedQueries({
+        @NamedQuery(name = "Orders.findCustomersOrders", query = "SELECT o FROM Orders o WHERE o.customer = :customer"),
+        @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o")
+})
 public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -14,10 +17,10 @@ public class Orders implements Serializable {
     private Long orderId;
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customerId;
+    private Customer customer;
     @ManyToOne
     @JoinColumn(name = "car_id")
-    private Car carId;
+    private Car car;
     @Column(name = "start_date", columnDefinition = "DATE")
     private LocalDate startDate;
     @Column(name = "end_date", columnDefinition = "DATE")
@@ -25,8 +28,8 @@ public class Orders implements Serializable {
 
     public Orders() {}
     public Orders(Customer customer, Car car, LocalDate startDate, LocalDate endDate) {
-        this.customerId = customer;
-        this.carId = car;
+        this.customer = customer;
+        this.car = car;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -43,20 +46,20 @@ public class Orders implements Serializable {
         this.orderId = orderId;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Car getCarId() {
-        return carId;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarId(Car carId) {
-        this.carId = carId;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public LocalDate getStartDate() {

@@ -31,19 +31,13 @@ public class CustomerDAO {
     }
 
     public List<Customer> showCustomers() {
-        int count = 1;
 
         EntityManager em = emf.createEntityManager();
-        EntityTransaction trans = em.getTransaction();
+        TypedQuery<Customer> query = em.createNamedQuery("Customer.findAll", Customer.class);
 
         try {
-            trans.begin();
-            while(em.find(Customer.class, count) != null) {
-                customerList.add(em.find(Customer.class, count));
-                count++;
-            }
+            customerList = query.getResultList();
         } catch (Exception ex) {
-            if(trans != null) {trans.rollback();}
             ex.printStackTrace();
         } finally {
             em.close();
@@ -82,8 +76,33 @@ public class CustomerDAO {
             customer = query.getSingleResult();
         } catch (NoResultException | NonUniqueResultException nre) {
             return null;
+        } finally {
+            em.close();
         }
 
         return customer;
+    }
+
+    public boolean removeCustomer(int id) {
+        boolean result = true;
+
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        Customer customer = null;
+
+        try {
+            trans.begin();
+            customer = em.find(Customer.class, id);
+            em.remove(customer);
+            trans.commit();
+        } catch (Exception ex) {
+            if(trans != null) {trans.rollback();}
+            result = false;
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+        return result;
     }
 }

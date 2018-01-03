@@ -143,25 +143,6 @@
                 <h1>Orders</h1>
                 <br>
                 <div class="table-responsive">
-                    <table class="order_table table">
-                        <tr>
-                            <th>Order no.: </th>
-                            <td>Test</td>
-                            <th>From: </th>
-                            <td>Test TestT</td>
-                        </tr>
-                        <tr>
-                            <th>Car: </th>
-                            <td>Test Test Test</td>
-                            <th>To: </th>
-                            <td>Test TestT</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align: center"><button type="button" class="button">Edit</button></td>
-                            <td colspan="2" style="text-align: center"><button type="button" class="button">Delete</button></td>
-                        </tr>
-                        <br><br>
-                    </table>
                     <c:forEach var="orders" items="${sessionScope.customersOrders}">
                     <table class="order_table table">
                         <tr>
@@ -172,13 +153,13 @@
                         </tr>
                         <tr>
                             <th>Car: </th>
-                            <td>${orders.getCarId().getBrand()} ${orders.getCarId().getModel()}</td>
+                            <td>${orders.getCar().getBrand()} ${orders.getCar().getModel()}</td>
                             <th>To: </th>
                             <td>${orders.getEndDate()}</td>
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center"><button type="button" class="button">Edit</button></td>
-                            <td colspan="2" style="text-align: center"><button type="button" class="button">Delete</button></td>
+                            <td colspan="2" style="text-align: center"><a href="RemoveFromDb?userOrderId=${orders.getOrderId()}"><button type="button" class="button">Delete</button></a></td>
                         </tr>
                         <br><br>
                     </table>

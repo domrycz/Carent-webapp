@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CaRent - Admin main page</title>
+    <title>CaRent (admin) - Order Info</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -46,6 +46,18 @@
             text-align: center;
             text-shadow: 1px 1px 2px black;
         }
+        .table-responsive {
+            border: none;
+        }
+        td {
+            color: white;
+            text-shadow: 1px 1px black;
+        }
+        p {
+            color: black;
+            font-weight: bold;
+            text-shadow: 1px 1px grey;
+        }
 
     </style>
 </head>
@@ -65,10 +77,10 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" title="user_profile">Admin profile</a></li>
+                <li><a href="main_admin.jsp" title="user_profile">Admin profile</a></li>
                 <li><a href="users_admin.jsp" title="users">Users</a></li>
                 <li><a href="cars_admin.jsp" title="cars">Cars</a></li>
-                <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
+                <li class="active"><a href="orders_admin.jsp" title="new_order">Orders</a></li>
                 <li><a href="logout" title="logout">Log out</a></li>
             </ul>
         </div>
@@ -77,15 +89,44 @@
 <section id="main_section">
     <div class="container-fluid">
         <div class="row">
-            <h2>Welcome in admin panel</h2>
-            <div class="col-xs-12 col-sm-6" id="header_info">
-                <c:forEach var="headerItem" items="${header }">
-                    <c:out value="${headerItem.key }" /> : <c:out value="${headerItem.value }" />
-                    <br><br>
-                </c:forEach>
+            <div class="col-xs-12 col-sm-6 table-responsive" id="header_info">
+                <h2>Order Info</h2><br>
+                <table class="table">
+                    <tr>
+                        <th>Order id</th>
+                        <td>${order.getOrderIdZeroFill()}</td>
+                    </tr>
+                    <tr>
+                        <th>Customer id</th>
+                        <td>${order.getCustomer().getCustomerIdZeroFill()}</td>
+                    </tr>
+                    <tr>
+                        <th>Customer data</th>
+                        <td>${order.getCustomer().getFirstname()} ${order.getCustomer().getLastname()}</td>
+                    </tr>
+                    <tr>
+                        <th>Car id</th>
+                        <td>${order.getCar().getCarIdZeroFill()}</td>
+                    </tr>
+                    <tr>
+                        <th>Car data</th>
+                        <td>${order.getCar().getBrand()} ${order.getCar().getModel()}</td>
+                    </tr>
+                    <tr>
+                        <th>Start of rent date</th>
+                        <td>${order.getStartDate()}</td>
+                    </tr>
+                    <tr>
+                        <th>End of rent date</th>
+                        <td>${order.getEndDate()}</td>
+                    </tr>
+                </table>
+                <br>
             </div>
             <div class="col-xs-12 col-sm-6">
-
+                <h2>Notes</h2><br>
+                <p>This is the space for additional notes e.g. rent policy</p>
+                <br>
             </div>
         </div>
     </div>

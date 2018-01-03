@@ -121,13 +121,13 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 content">
                 <h2>New Order</h2><br><br>
-                <form>
+                <form action="NewOrder" method="post">
                     <fieldset>
                         Choose the car:<br>
-                        <select name="cars">
-                            <option>Opel Astra</option>
-                            <option>Toyota Aygo</option>
-                            <option>BMW</option>
+                        <select name="car">
+                            <c:forEach var="car" items="${sessionScope.carList}">
+                            <option>${car.getCarIdZeroFill()} - ${car.getBrand()} ${car.getModel()}</option>
+                            </c:forEach>
                         </select><br><br>
                         <p style="font-size: 18px;">Rental period:</p><br>
                         From:<br>
@@ -142,7 +142,7 @@
                 <h2>Available cars</h2><br><br>
                 <table>
                     <tr>
-                        <th style="font-size: 20px; padding-bottom: 7px">Toyota Aygo</th>
+                        <th style="font-size: 20px; padding-bottom: 7px">Test Test</th>
                     </tr>
                     <tr>
                         <th>Segment: </th>
@@ -150,15 +150,15 @@
                     </tr>
                     <tr>
                         <th>Year: </th>
-                        <td>2016</td>
+                        <td>Test</td>
                     </tr>
                     <tr>
                         <th>Engine: </th>
-                        <td>1.0 PB 69 KM</td>
+                        <td>Test Test Te</td>
                     </tr>
                     <tr>
                         <th>Car number: </th>
-                        <td>01</td>
+                        <td>Test</td>
                     </tr>
                 </table>
                 <br><br>
@@ -169,8 +169,8 @@
                         <th colspan="2" style="font-size: 20px; padding-bottom: 7px">${car.getBrand()} ${car.getModel()}</th>
                     </tr>
                     <tr>
-                        <th width="40%">Segment: </th>
-                        <td width="40%">${car.getSegment()}</td>
+                        <th width="170px">Segment: </th>
+                        <td>${car.getSegment()}</td>
                     </tr>
                     <tr>
                         <th>Year: </th>

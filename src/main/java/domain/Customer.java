@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@NamedQuery(name = "Customer.findParticular", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password")
+@NamedQueries({
+        @NamedQuery(name = "Customer.findParticular", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password"),
+        @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
+})
 public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,7 +30,7 @@ public class Customer implements Serializable {
     @Column(nullable = false, columnDefinition = "VARCHAR(40) UNIQUE")
     private String email;
 
-    @OneToMany(mappedBy = "customerId")
+    @OneToMany(mappedBy = "customer")
     private List<Orders> orders;
 
     public Customer() {}

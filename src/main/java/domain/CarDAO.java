@@ -30,20 +30,13 @@ public class CarDAO {
     }
 
     public List<Car> showCars() {
-        int count = 1;
 
         EntityManager em = emf.createEntityManager();
-        EntityTransaction trans = em.getTransaction();
+        TypedQuery<Car> query = em.createNamedQuery("Car.findAll", Car.class);
 
         try {
-            trans.begin();
-            while(em.find(Car.class, count) != null) {
-                carList.add(em.find(Car.class, count));
-                count++;
-            }
-            trans.commit();
+            carList = query.getResultList();
         } catch (Exception ex) {
-            if(trans != null) {trans.rollback();}
             ex.printStackTrace();
         } finally {
             em.close();
@@ -69,6 +62,29 @@ public class CarDAO {
             em.close();
         }
         return car;
+    }
+
+    public boolean removeCar(int id) {
+        boolean result = true;
+
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        Car car = null;
+
+        try {
+            trans.begin();
+            car = em.find(Car.class, id);
+            em.remove(car);
+            trans.commit();
+        } catch (Exception ex) {
+            if(trans.isActive()) {trans.rollback();}
+            result = false;
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+        return result;
     }
 
 }

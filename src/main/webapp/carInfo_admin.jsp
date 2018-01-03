@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CaRent (admin) - Cars</title>
+    <title>CaRent (admin) - Car Info</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -46,6 +46,9 @@
             text-align: center;
             text-shadow: 1px 1px 2px black;
         }
+        .table-responsive {
+            border: none;
+        }
         .button {
             background-color: #b30000;
             border-radius: 8px;
@@ -64,34 +67,15 @@
             background-color: #cc0000;
             border: 1px inset #990000;
         }
-        #new_object_form {
-            width: 70%;
-            text-align: center;
-            margin-left: 15%;
-            font-weight: bold;
-        }
-        input {
-            background-color: #ffcccc;
-            margin: 5px 0;
-        }
-        .table-responsive {
-            border: none;
-        }
-        table {
-            width: 90%;
-            font-size: 16px;
-        }
-        table, tr, td, th{
-            border: 3px solid white;
-            text-align: center;
-        }
-        th, td {
-            padding: 3px 7px;
-        }
         td {
-            font-size: 14px;
+            color: white;
+            text-shadow: 1px 1px black;
         }
-
+        p {
+            color: black;
+            font-weight: bold;
+            text-shadow: 1px 1px grey;
+        }
 
     </style>
 </head>
@@ -105,14 +89,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" id="navbar-brand"><img src="img/logo_final.jpg" class="img-rounded" alt="logo_menu" id="logo_menu"></a>
         </div>
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="main_admin.jsp" title="user_profile">Admin profile</a></li>
+                <li><a href="#" title="user_profile">Admin profile</a></li>
                 <li><a href="users_admin.jsp" title="users">Users</a></li>
-                <li class="active"><a href="#" title="cars">Cars</a></li>
+                <li class="active"><a href="cars_admin.jsp" title="cars">Cars</a></li>
                 <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
                 <li><a href="logout" title="logout">Log out</a></li>
             </ul>
@@ -122,55 +107,46 @@
 <section id="main_section">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-sm-5">
-                <table style="width: 100%">
-                    <caption><h2>Add new Car</h2></caption>
-                </table>
-                <form action="CarToDb" method="post" id="new_object_form">
-                    <fieldset>
-                        Brand:<br>
-                        <input type="text" name="brand" maxlength="20" required><br>
-                        Model:<br>
-                        <input type="text" name="model" maxlength="20" required><br>
-                        Production Year:<br>
-                        <input type="number" name="yearProd" placeholder="YYYY" min="2000" max="2018" required><br>
-                        Engine:<br>
-                        <input type="text" name="engine" placeholder="1.0 PB 50KM" maxlength="20" required><br>
-                        Segment:<br>
-                        <input type="text" name="segment" placeholder="A" maxlength="1" required><br>
-                        <br>
-                        <input class="button" type="submit" value="Add Car">
-                        <br>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="col-xs-12 col-sm-7 table-responsive">
+            <div class="col-xs-12 col-sm-6 table-responsive" id="header_info">
+                <h2>Car Info</h2><br>
                 <table class="table">
-                    <caption><h2>Cars</h2></caption>
-                    <tr style="font-size: 18px">
-                        <th style="width: 10%">id</th>
-                        <th style="width: 20%">Brand</th>
-                        <th style="width: 20%">Model</th>
-                        <th style="width: 25%">Engine</th>
-                        <th>Details</th>
-                    </tr>
-                    <tr style="height: 45px">
-                        <td>045</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test Test</td>
-                        <td><button type="button" class="button" style="font-size: 12px">Show</button></td>
-                    </tr>
-                    <c:forEach var="car" items="${sessionScope.carList}">
-                    <tr style="height: 45px">
+                    <tr>
+                        <th>Car id</th>
                         <td>${car.getCarIdZeroFill()}</td>
-                        <td>${car.getBrand()}</td>
-                        <td>${car.getModel()}</td>
-                        <td>${car.getEngine()}</td>
-                        <td><a href="ObjectInfo?carId=${car.getCarId()}"><button class="button" style="font-size: 12px">Show</button></a></td>
                     </tr>
-                    </c:forEach>
+                    <tr>
+                        <th>Brand</th>
+                        <td>${car.getBrand()}</td>
+                    </tr>
+                    <tr>
+                        <th>Model</th>
+                        <td>${car.getModel()}</td>
+                    </tr>
+                    <tr>
+                        <th>Production year</th>
+                        <td>${car.getYearProd()}</td>
+                    </tr>
+                    <tr>
+                        <th>Engine</th>
+                        <td>${car.getEngine()}</td>
+                    </tr>
+                    <tr>
+                        <th>Segment</th>
+                        <td>${car.getSegment()}</td>
+                    </tr>
+                    <tr>
+                        <th>Availability</th>
+                        <td>${car.getAvailable()}</td>
+                    </tr>
                 </table>
+                <br>
+                <a href="RemoveFromDb?carId=${car.getCarId()}"><button type="button" class="button">Remove car</button></a>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <h2>Notes</h2><br>
+                <p>You can't delete a car if it is included in orders!</p>
+                <br>
+                <!-- <p>Try not to change car's data when it is included in orders!</p> -->
             </div>
         </div>
     </div>

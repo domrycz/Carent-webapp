@@ -129,7 +129,7 @@
 <section id="main_section">
     <div class="container-fluid">
             <div class="col-xs-12 col-sm-6 table-responsive">
-                <h3 class="car_name">Toyota Aygo </h3>
+                <h3 class="car_name">Test Test Test </h3>
                 <img src="img/535d.png" alt="car_photo">
                 <table class="table">
                     <tr>
@@ -139,43 +139,16 @@
                     </tr>
                     <tr>
                         <th>Year: </th>
-                        <td>2016</td>
+                        <td>Test</td>
                     </tr>
                     <tr>
                         <th>Engine: </th>
-                        <td>1.0 PB 69 KM</td>
+                        <td>Test Test Test</td>
                         <td rowspan="2" style="text-align: center; padding-top: 20px;"><button class="order_button" type="button">Order now!</button></td>
                     </tr>
                     <tr>
                         <th>Car number: </th>
-                        <td>01</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-xs-12 col-sm-6 table-responsive">
-                <h3 class="car_name">Toyota Aygo </h3>
-                <img src="img/6.png" alt="car_photo">
-                <table class="table">
-                    <tr>
-                        <th colspan="2">Toyota Aygo</th>
-                        <td rowspan="3" style="text-align: center; padding-top: 35px;"><h4 class="is_available">AVAILABLE</h4></td>
-                    </tr>
-                    <tr>
-                        <th>Segment: </th>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <th>Year: </th>
-                        <td>2016</td>
-                    </tr>
-                    <tr>
-                        <th>Engine: </th>
-                        <td>1.0 PB 69 KM</td>
-                        <td rowspan="2" style="text-align: center; padding-top: 20px;"><button class="order_button" type="button">Order now!</button></td>
-                    </tr>
-                    <tr>
-                        <th>Car number: </th>
-                        <td>01</td>
+                        <td>Test</td>
                     </tr>
                 </table>
             </div>
@@ -203,7 +176,7 @@
                     <tr>
                         <th>Engine: </th>
                         <td>${car.getEngine()}</td>
-                        <td rowspan="2" style="text-align: center; padding-top: 20px;"><button class="order_button" type="button">Order now!</button></td>
+                        <td rowspan="2" style="text-align: center; padding-top: 20px;"><a href="neworder_customer.jsp"><button class="order_button" type="button">Order now!</button></a></td>
                     </tr>
                     <tr>
                         <th>Car number: </th>

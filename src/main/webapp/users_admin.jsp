@@ -101,6 +101,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" id="navbar-brand"><img src="img/logo_final.jpg" class="img-rounded" alt="logo_menu" id="logo_menu"></a>
         </div>
@@ -155,20 +156,13 @@
                         <th style="width: 30%">Last Name</th>
                         <th colspan="2">Options</th>
                     </tr>
-                    <tr style="height: 43px">
-                        <td>0082</td>
-                        <td>Johnattan</td>
-                        <td>Kowalskiewicz</td>
-                        <td><button class="button" style="font-size: 12px">View details</button></td>
-                        <td><button class="button" style="font-size: 12px">Remove</button></td>
-                    </tr>
                     <c:forEach var="customer" items="${sessionScope.customerList}">
                         <tr style="height: 43px">
                             <td>${customer.getCustomerIdZeroFill()}</td>
                             <td>${customer.firstname}</td>
                             <td>${customer.lastname}</td>
-                            <td><button class="button" style="font-size: 12px">View details</button></td>
-                            <td><button class="button" style="font-size: 12px">Remove</button></td>
+                            <td><a href="ObjectInfo?customerId=${customer.getCustomerId()}"><button class="button" style="font-size: 12px">View details</button></a></td>
+                            <td><a href="RemoveFromDb?customerId=${customer.getCustomerId()}"><button class="button" style="font-size: 12px">Remove</button></a></td>
                         </tr>
                     </c:forEach>
                 </table>
