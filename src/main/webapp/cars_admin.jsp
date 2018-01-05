@@ -154,13 +154,6 @@
                         <th style="width: 25%">Engine</th>
                         <th>Details</th>
                     </tr>
-                    <tr style="height: 45px">
-                        <td>045</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test Test</td>
-                        <td><button type="button" class="button" style="font-size: 12px">Show</button></td>
-                    </tr>
                     <c:forEach var="car" items="${sessionScope.carList}">
                     <tr style="height: 45px">
                         <td>${car.getCarIdZeroFill()}</td>

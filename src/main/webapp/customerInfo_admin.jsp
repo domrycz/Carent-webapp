@@ -94,7 +94,7 @@
                 <table class="table">
                     <tr>
                         <th>Customer id</th>
-                        <td>${customer.getCustomerId()}</td>
+                        <td>${customer.getCustomerIdZeroFill()}</td>
                     </tr>
                     <tr>
                         <th>First Name</th>

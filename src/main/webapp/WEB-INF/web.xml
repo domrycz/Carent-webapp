@@ -18,6 +18,7 @@
         <url-pattern>/cars_admin.jsp</url-pattern>
         <url-pattern>/orders_admin.jsp</url-pattern>
         <url-pattern>/users_admin.jsp</url-pattern>
+        <url-pattern>/ObjectInfo</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>CustomerAuthFilter</filter-name>

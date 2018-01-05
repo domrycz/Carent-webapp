@@ -130,8 +130,7 @@
                         Last Name:<br>
                         <input type="text" name="lastname" maxlength="40" required><br>
                         Release of driver license (yyyy-mm-dd):<br>
-                        <input type="text" name="driverLicDate" maxlength="10" placeholder="yyyy-mm-dd" required><br>
-                        <!-- TODO: make a regex for date checking -->
+                        <input type="text" name="driverLicDate" maxlength="10" pattern="((19\d{2}|201\d|200\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))" placeholder="yyyy-mm-dd" required><br>
                         ID number:<br>
                         <input type="text" name="idNumber" maxlength="20" required><br>
                         Password:<br>

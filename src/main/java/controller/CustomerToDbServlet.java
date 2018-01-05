@@ -39,7 +39,6 @@ public class CustomerToDbServlet extends HttpServlet {
             request.getSession(false).removeAttribute("customerList");
             request.getSession(false).setAttribute("customerList", customerDAO.showCustomers());
         }
-        // TODO Make a web pages with confirmation and error
         response.sendRedirect("main_admin.jsp");
     }
 }

@@ -64,9 +64,9 @@
 			Last name: <br>
 			<input type="text" name="lastname" placeholder="Doe" maxlength="30" required><br>
 			Release date of driver license: <br>
-			<input type="date" maxlength="10" placeholder="yyyy-mm-dd" name="dr_lic_date" required><br>
+			<input type="text" name="driverLicDate" maxlength="10" pattern="((19\d{2}|201\d|200\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))" placeholder="yyyy-mm-dd" required><br>
 			ID number: <br>
-			<input type="text" name="id_number" placeholder="AAA123456" maxlength="20" required><br>
+			<input type="text" name="idNumber" placeholder="AAA123456" maxlength="20" required><br>
 			Email address: <br>
 			<input type="email" name="email" placeholder="example@example.com" maxlength="40" required><br>
 			Password: <br>

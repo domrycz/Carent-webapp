@@ -123,17 +123,18 @@
                 <h2>New Order</h2><br><br>
                 <form action="NewOrder" method="post">
                     <fieldset>
-                        Choose the car:<br>
-                        <select name="car">
+                        Choose the car:<br><br>
                             <c:forEach var="car" items="${sessionScope.carList}">
-                            <option>${car.getCarIdZeroFill()} - ${car.getBrand()} ${car.getModel()}</option>
+                                <c:if test="${car.getAvailable()}">
+                                    <input type="radio" name="car" value="${car.getCarId()}">${car.getCarIdZeroFill()} - ${car.getBrand()} ${car.getModel()}<br>
+                                </c:if>
                             </c:forEach>
-                        </select><br><br>
+                        <br><br>
                         <p style="font-size: 18px;">Rental period:</p><br>
                         From:<br>
-                        <input type="date" name="start_date"><br><br>
+                        <input type="date" maxlength="10" placeholder="yyyy-mm-dd" name="start_date"><br><br>
                         To:<br>
-                        <input type="date" name="end_date"><br><br>
+                        <input type="date" maxlength="10" placeholder="yyyy-mm-dd" name="end_date"><br><br>
                         <input type="submit" value="Create" id="button">
                     </fieldset>
                 </form>
@@ -141,27 +142,6 @@
             <div class="col-xs-12 col-sm-6 content">
                 <h2>Available cars</h2><br><br>
                 <table>
-                    <tr>
-                        <th style="font-size: 20px; padding-bottom: 7px">Test Test</th>
-                    </tr>
-                    <tr>
-                        <th>Segment: </th>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <th>Year: </th>
-                        <td>Test</td>
-                    </tr>
-                    <tr>
-                        <th>Engine: </th>
-                        <td>Test Test Te</td>
-                    </tr>
-                    <tr>
-                        <th>Car number: </th>
-                        <td>Test</td>
-                    </tr>
-                </table>
-                <br><br>
                 <c:forEach var="car" items="${sessionScope.carList}">
                     <c:if test="${car.getAvailable()}">
                 <table>

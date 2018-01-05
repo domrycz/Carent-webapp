@@ -128,30 +128,6 @@
 </nav>
 <section id="main_section">
     <div class="container-fluid">
-            <div class="col-xs-12 col-sm-6 table-responsive">
-                <h3 class="car_name">Test Test Test </h3>
-                <img src="img/535d.png" alt="car_photo">
-                <table class="table">
-                    <tr>
-                        <th>Segment: </th>
-                        <td>A</td>
-                        <td rowspan="2" style="text-align: center; padding-top: 17px;"><h4 class="not_available">OCCUPIED</h4></td>
-                    </tr>
-                    <tr>
-                        <th>Year: </th>
-                        <td>Test</td>
-                    </tr>
-                    <tr>
-                        <th>Engine: </th>
-                        <td>Test Test Test</td>
-                        <td rowspan="2" style="text-align: center; padding-top: 20px;"><button class="order_button" type="button">Order now!</button></td>
-                    </tr>
-                    <tr>
-                        <th>Car number: </th>
-                        <td>Test</td>
-                    </tr>
-                </table>
-            </div>
         <c:forEach var="car" items="${sessionScope.carList}">
             <div class="col-xs-12 col-sm-6 table-responsive">
                 <h3 class="car_name">${car.getBrand()} ${car.getModel()} </h3>

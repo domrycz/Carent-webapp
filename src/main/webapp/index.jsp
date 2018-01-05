@@ -20,7 +20,7 @@
             background-color: #990000;
             width: 100%;
             border-radius: 8px;
-            border: 1px solid #b30000;
+            border: 1px solid #990000;
             font-family: 'Orbitron', sans-serif;
             font-size: 20px;
             font-weight: bold;
@@ -47,7 +47,3 @@
 </div>
 </body>
 </html>
-
-<!-- po dodaniu obiektu przez serwlet - zaktualizować atrybuty (carList itp.), po dodaniu obiektu
-przekierowywać na main_admin z jakimś info?
--->

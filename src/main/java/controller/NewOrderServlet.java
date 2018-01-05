@@ -1,9 +1,6 @@
 package controller;
 
-import domain.CarDAO;
-import domain.CustomerDAO;
-import domain.DateFormat;
-import domain.OrdersDAO;
+import domain.*;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -21,12 +18,27 @@ public class NewOrderServlet extends HttpServlet {
     private OrdersDAO ordersDAO;
     @Inject
     private CarDAO carDAO;
-    @Inject
-    private CustomerDAO customerDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         LocalDate startDate = LocalDate.parse(request.getParameter("start_date"), DateFormat.getDateFormat());
+        LocalDate endDate = LocalDate.parse(request.getParameter("end_date"), DateFormat.getDateFormat());
+        int carId = Integer.valueOf(request.getParameter("car"));
 
+        Car car = carDAO.getCarById(carId);
+        Customer customer = (Customer) request.getSession(false).getAttribute("activeUser");
+
+        Orders newOrder = new Orders();
+        newOrder.setStartDate(startDate);
+        newOrder.setEndDate(endDate);
+        newOrder.setCar(car);
+        newOrder.setCustomer(customer);
+
+        ordersDAO.addOrder(newOrder);
+
+        request.getSession(false).removeAttribute("customersOrders");
+        request.getSession(false).setAttribute("customersOrders", ordersDAO.showCustomerOrders(customer));
+
+        response.sendRedirect("main_customer.jsp");
     }
-
 }

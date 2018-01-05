@@ -30,7 +30,8 @@ public class NewCustomerServlet extends HttpServlet {
 
             customer.setFirstname(request.getParameter("firstname"));
             customer.setLastname(request.getParameter("lastname"));
-            LocalDate driverLicDate = LocalDate.parse(request.getParameter("driverLicDate"), DateFormat.getDateFormat());
+            String date = request.getParameter("driverLicDate");
+            LocalDate driverLicDate = LocalDate.parse(date, DateFormat.getDateFormat());
             customer.setDriverLicDate(driverLicDate);
             customer.setIdNumber(request.getParameter("idNumber"));
             customer.setEmail(request.getParameter("email"));
@@ -39,7 +40,7 @@ public class NewCustomerServlet extends HttpServlet {
             result = customerDAO.addCustomer(customer);
         }
         if(result) {
-            response.sendRedirect("login_user.html");
+            response.sendRedirect("log_in_user.html");
         } else {
             response.sendRedirect("default_error.html");
         }

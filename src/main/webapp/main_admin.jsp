@@ -41,7 +41,7 @@
         #main_section {
             font-family: 'Orbitron', sans-serif;
         }
-        #main_section h2 {
+        #main_section h2, h3 {
             color: white;
             text-align: center;
             text-shadow: 1px 1px 2px black;
@@ -77,10 +77,11 @@
 <section id="main_section">
     <div class="container-fluid">
         <div class="row">
-            <h2>Welcome in admin panel</h2>
+            <h2>Welcome in admin panel</h2><br>
             <div class="col-xs-12 col-sm-6" id="header_info">
-                <c:forEach var="headerItem" items="${header }">
-                    <c:out value="${headerItem.key }" /> : <c:out value="${headerItem.value }" />
+                <h3>Data from your header</h3>
+                <c:forEach var="headerItem" items="${header}">
+                    <c:out value="${headerItem.key}" /> : <c:out value="${headerItem.value}" />
                     <br><br>
                 </c:forEach>
             </div>
