@@ -40,7 +40,13 @@ public class ObjectInfoServlet extends HttpServlet {
             Orders order = ordersDAO.getOrderById(orderId);
             request.setAttribute("order", order);
 
-            request.getRequestDispatcher("orderInfo_admin.jsp").forward(request, response);
+            boolean admin = Boolean.valueOf(request.getParameter("admin"));
+
+            if(admin) {
+                request.getRequestDispatcher("orderInfo_admin.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("editOrder_customer.jsp").forward(request, response);
+            }
         }
     }
 }

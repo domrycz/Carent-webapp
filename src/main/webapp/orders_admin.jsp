@@ -16,7 +16,7 @@
         .navbar {
             background-color: #990000;
             font-family: 'Orbitron', sans-serif;
-            height: 62px;
+            min-height: 62px;
             border: none;
         }
         .navbar-brand img {
@@ -26,11 +26,13 @@
             position: absolute; top: 5px;
         }
         .navbar-nav li {
+            min-height: 62px;
             padding-bottom: 5px;
         }
         .navbar-nav a {
-            height: 62px;
+            min-height: 62px;
             font-size: 17px;
+            z-index: 1;
         }
         .navbar-inverse .navbar-nav .active a {
             background-color: #990000;
@@ -153,7 +155,7 @@
                             <td>${orders.getOrderIdZeroFill()}</td>
                             <td>${orders.getCustomer().getFirstname().charAt(0)}. ${orders.getCustomer().getLastname()}</td>
                             <td>${orders.getCar().getCarIdZeroFill()}</td>
-                            <td><a href="ObjectInfo?orderId=${orders.getOrderId()}"><button class="button" type="button" style="font-size: 12px">Details</button></a></td>
+                            <td><a href="ObjectInfo?orderId=${orders.getOrderId()}&admin=true"><button class="button" type="button" style="font-size: 12px">Details</button></a></td>
                             <td><a href="RemoveFromDb?orderId=${orders.getOrderId()}"><button class="button" type="button" style="font-size: 12px">Remove</button></a></td>
                         </tr>
                     </c:forEach>

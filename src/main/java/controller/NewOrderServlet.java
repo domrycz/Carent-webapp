@@ -21,8 +21,8 @@ public class NewOrderServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        LocalDate startDate = LocalDate.parse(request.getParameter("start_date"), DateFormat.getDateFormat());
-        LocalDate endDate = LocalDate.parse(request.getParameter("end_date"), DateFormat.getDateFormat());
+        LocalDate startDate = LocalDate.parse(request.getParameter("start_date"), DateFormat.getDateFormat()).plusDays(1L);
+        LocalDate endDate = LocalDate.parse(request.getParameter("end_date"), DateFormat.getDateFormat()).plusDays(1L);
         int carId = Integer.valueOf(request.getParameter("car"));
 
         Car car = carDAO.getCarById(carId);

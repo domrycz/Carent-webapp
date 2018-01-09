@@ -18,12 +18,12 @@
         <url-pattern>/cars_admin.jsp</url-pattern>
         <url-pattern>/orders_admin.jsp</url-pattern>
         <url-pattern>/users_admin.jsp</url-pattern>
-        <url-pattern>/ObjectInfo</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>CustomerAuthFilter</filter-name>
         <url-pattern>/main_customer.jsp</url-pattern>
         <url-pattern>/cars_customer.jsp</url-pattern>
         <url-pattern>/neworder_customer.jsp</url-pattern>
+        <url-pattern>/ObjectInfo</url-pattern>
     </filter-mapping>
 </web-app>

@@ -30,8 +30,8 @@ public class OrderToDbServlet extends HttpServlet {
             Customer customer = customerDAO.getCustomerById(customerId);
             Car car = carDAO.getCarById(carId);
 
-            LocalDate startDate = LocalDate.parse(request.getParameter("startDate"), DateFormat.getDateFormat());
-            LocalDate endDate = LocalDate.parse(request.getParameter("endDate"), DateFormat.getDateFormat());
+            LocalDate startDate = LocalDate.parse(request.getParameter("startDate"), DateFormat.getDateFormat()).plusDays(1L);
+            LocalDate endDate = LocalDate.parse(request.getParameter("endDate"), DateFormat.getDateFormat()).plusDays(1L);
 
             Orders order = new Orders(customer, car, startDate, endDate);
             ordersDAO.addOrder(order);

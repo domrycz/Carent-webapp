@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CaRent (admin) - Order Info</title>
+    <title>CaRent - Edit order</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -48,6 +48,25 @@
             text-align: center;
             text-shadow: 1px 1px 2px black;
         }
+        #button {
+            background-color: #b30000;
+            width: 80px;
+            border-radius: 8px;
+            border: 1px #cc0000;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            text-shadow: 1px 1px 2px grey;
+            -webkit-transition: background-color 2s;
+            transition: background-color 2s;
+        }
+        #button:hover {
+            background-color: #cc0000;
+            border: 1px inset #cc0000;
+        }
         .table-responsive {
             border: none;
         }
@@ -55,12 +74,14 @@
             color: white;
             text-shadow: 1px 1px black;
         }
+        form {
+            text-align: center;
+        }
         p {
             color: black;
             font-weight: bold;
             text-shadow: 1px 1px grey;
         }
-
     </style>
 </head>
 <body>
@@ -99,14 +120,6 @@
                         <td>${order.getOrderIdZeroFill()}</td>
                     </tr>
                     <tr>
-                        <th>Customer id</th>
-                        <td>${order.getCustomer().getCustomerIdZeroFill()}</td>
-                    </tr>
-                    <tr>
-                        <th>Customer data</th>
-                        <td>${order.getCustomer().getFirstname()} ${order.getCustomer().getLastname()}</td>
-                    </tr>
-                    <tr>
                         <th>Car id</th>
                         <td>${order.getCar().getCarIdZeroFill()}</td>
                     </tr>
@@ -126,8 +139,26 @@
                 <br>
             </div>
             <div class="col-xs-12 col-sm-6">
-                <h2>Notes</h2><br>
-                <p>This is the space for additional notes e.g. rent policy</p>
+                <h2>Enter new data</h2><br>
+                <form action="EditOrder" method="post">
+                    <fieldset>
+                        <p style="font-size: 16px;">Order Id:</p><br>
+                        <input type="text" name="orderId" value="${order.getOrderId()}" readonly><br><br>
+                        <p style="font-size: 16px;">Choose the car:</p><br>
+                        <c:forEach var="car" items="${sessionScope.carList}">
+                            <c:if test="${car.getAvailable()}">
+                                <input type="radio" name="carId" value="${car.getCarId()}">${car.getCarIdZeroFill()} - ${car.getBrand()} ${car.getModel()}<br>
+                            </c:if>
+                        </c:forEach>
+                        <br>
+                        <p style="font-size: 16px;">Rental period:</p><br>
+                        From:<br>
+                        <input type="date" name="start_date"><br><br>
+                        To:<br>
+                        <input type="date" name="end_date"><br><br>
+                        <input type="submit" value="Change" id="button">
+                    </fieldset>
+                </form>
                 <br>
             </div>
         </div>

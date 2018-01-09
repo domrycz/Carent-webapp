@@ -74,8 +74,28 @@ public class OrdersDAO {
         return customerOrdersList;
     }
 
-    public boolean removeOrder(long id) {
-        boolean result = true;
+    public void updateOrder(Orders order) {
+
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            Orders updOrder = em.find(Orders.class, order.getOrderId());
+            trans.begin();
+            updOrder.setCustomer(order.getCustomer());
+            updOrder.setCar(order.getCar());
+            updOrder.setStartDate(order.getStartDate());
+            updOrder.setEndDate(order.getEndDate());
+            trans.commit();
+        } catch (Exception ex) {
+            if(trans != null) {trans.rollback();}
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void removeOrder(long id) {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -88,12 +108,9 @@ public class OrdersDAO {
             trans.commit();
         } catch (Exception ex) {
             if(trans != null) {trans.rollback();}
-            result = false;
             ex.printStackTrace();
         } finally {
             em.close();
         }
-
-        return result;
     }
 }

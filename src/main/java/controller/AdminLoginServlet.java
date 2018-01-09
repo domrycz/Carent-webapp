@@ -40,7 +40,7 @@ public class AdminLoginServlet extends HttpServlet {
 
             request.getRequestDispatcher("main_admin.jsp").forward(request, response);
         } else {
-            response.sendRedirect("log_in_admin.html");
+            response.sendRedirect("default_error.html");
         }
     }
 
