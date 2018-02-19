@@ -100,10 +100,9 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="main_admin.jsp" title="user_profile">Admin profile</a></li>
-                <li><a href="users_admin.jsp" title="users">Users</a></li>
-                <li><a href="cars_admin.jsp" title="cars">Cars</a></li>
-                <li class="active"><a href="orders_admin.jsp" title="new_order">Orders</a></li>
+                <l><a href="main_customer.jsp" title="user_profile">Your profile</a></l>
+                <li><a href="cars_customer.jsp" title="cars">Cars</a></li>
+                <li class="active"><a href="neworder_customer.jsp" title="new_order">New order</a></li>
                 <li><a href="logout" title="logout">Log out</a></li>
             </ul>
         </div>

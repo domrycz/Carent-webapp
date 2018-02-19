@@ -18,7 +18,7 @@ import java.io.IOException;
 public class AdminLoginServlet extends HttpServlet {
 
     private final String USERNAME = "root";
-    private final String PASS = "root";
+    private final String PASS = "paw8";
 
     @Inject
     private CarDAO carDAO;

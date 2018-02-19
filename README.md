@@ -20,3 +20,7 @@ It is a very simple application because I have been learning programming during 
  - change of car availability after booking it
  - creating .pdf to order
  but I have a deadline which not allow me to make more complicated things. I plan to make other application with these functionalities (and probably with Spring).
+
+I won't continue to develop it. I know that there is a lot to improve/fix but I want to focus on other things.
+
+The most important thing is that I managed to graduate :)
