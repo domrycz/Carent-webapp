@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Carent - Your main page</title>
+    <title>CaRent - Your main page</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -16,7 +16,7 @@
         .navbar {
             background-color: #990000;
             font-family: 'Orbitron', sans-serif;
-            height: 62px;
+            min-height: 62px;
             border: none;
         }
         .navbar-brand img {
@@ -26,11 +26,13 @@
             position: absolute; top: 5px;
         }
         .navbar-nav li {
+            min-height: 62px;
             padding-bottom: 5px;
         }
         .navbar-nav a {
-            height: 62px;
+            min-height: 62px;
             font-size: 17px;
+            z-index: 1;
         }
         .navbar-inverse .navbar-nav .active a {
             background-color: #990000;
@@ -143,25 +145,6 @@
                 <h1>Orders</h1>
                 <br>
                 <div class="table-responsive">
-                    <table class="order_table table">
-                        <tr>
-                            <th>Order no.: </th>
-                            <td>Test</td>
-                            <th>From: </th>
-                            <td>Test TestT</td>
-                        </tr>
-                        <tr>
-                            <th>Car: </th>
-                            <td>Test Test Test</td>
-                            <th>To: </th>
-                            <td>Test TestT</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align: center"><button type="button" class="button">Edit</button></td>
-                            <td colspan="2" style="text-align: center"><button type="button" class="button">Delete</button></td>
-                        </tr>
-                        <br><br>
-                    </table>
                     <c:forEach var="orders" items="${sessionScope.customersOrders}">
                     <table class="order_table table">
                         <tr>
@@ -172,15 +155,15 @@
                         </tr>
                         <tr>
                             <th>Car: </th>
-                            <td>${orders.getCarId().getBrand()} ${orders.getCarId().getModel()}</td>
+                            <td>${orders.getCar().getBrand()} ${orders.getCar().getModel()}</td>
                             <th>To: </th>
                             <td>${orders.getEndDate()}</td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="text-align: center"><button type="button" class="button">Edit</button></td>
-                            <td colspan="2" style="text-align: center"><button type="button" class="button">Delete</button></td>
+                            <td colspan="2" style="text-align: center"><a href="ObjectInfo?orderId=${orders.getOrderId()}&admin=false"><button type="button" class="button">Edit</button></a></td>
+                            <td colspan="2" style="text-align: center"><a href="RemoveFromDb?userOrderId=${orders.getOrderId()}"><button type="button" class="button">Delete</button></a></td>
                         </tr>
-                        <br><br>
+                        <br>
                     </table>
                     </c:forEach>
                 </div>

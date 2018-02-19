@@ -32,18 +32,11 @@ public class OrdersDAO {
     public List<Orders> showOrders() {
 
         EntityManager em = emf.createEntityManager();
-        EntityTransaction trans = em.getTransaction();
+        TypedQuery<Orders> query = em.createNamedQuery("Orders.findAll", Orders.class);
 
-        long count = 1L; //added to help with filling the ordersList
         try {
-            trans.begin();
-            while(em.find(Orders.class, count) != null) {
-                ordersList.add(em.find(Orders.class, count));
-                count++;
-            }
-            trans.commit();
+            ordersList = query.getResultList();
         } catch (Exception ex) {
-            if(trans != null) {trans.rollback();}
             ex.printStackTrace();
         } finally {
             em.close();
@@ -51,7 +44,7 @@ public class OrdersDAO {
         return ordersList;
     }
 
-    public Orders getOrderById(int id) {
+    public Orders getOrderById(long id) {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -79,5 +72,45 @@ public class OrdersDAO {
         customerOrdersList = query.getResultList();
 
         return customerOrdersList;
+    }
+
+    public void updateOrder(Orders order) {
+
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            Orders updOrder = em.find(Orders.class, order.getOrderId());
+            trans.begin();
+            updOrder.setCustomer(order.getCustomer());
+            updOrder.setCar(order.getCar());
+            updOrder.setStartDate(order.getStartDate());
+            updOrder.setEndDate(order.getEndDate());
+            trans.commit();
+        } catch (Exception ex) {
+            if(trans != null) {trans.rollback();}
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void removeOrder(long id) {
+
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        Orders order  = null;
+
+        try {
+            trans.begin();
+            order = em.find(Orders.class, id);
+            em.remove(order);
+            trans.commit();
+        } catch (Exception ex) {
+            if(trans != null) {trans.rollback();}
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
     }
 }

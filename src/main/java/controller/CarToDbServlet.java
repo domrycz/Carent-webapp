@@ -32,7 +32,7 @@ public class CarToDbServlet extends HttpServlet {
             car.setSegment(request.getParameter("segment").charAt(0));
 
             carDAO.addCar(car);
-
+            // update of carList attribute after adding a new car
             request.getSession(false).removeAttribute("carList");
             request.getSession(false).setAttribute("carList", carDAO.showCars());
         }

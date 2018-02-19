@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CaRent - Admin main page</title>
+    <title>CaRent (admin) - Orders</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -16,7 +16,7 @@
         .navbar {
             background-color: #990000;
             font-family: 'Orbitron', sans-serif;
-            height: 62px;
+            min-height: 62px;
             border: none;
         }
         .navbar-brand img {
@@ -26,11 +26,13 @@
             position: absolute; top: 5px;
         }
         .navbar-nav li {
+            min-height: 62px;
             padding-bottom: 5px;
         }
         .navbar-nav a {
-            height: 62px;
+            min-height: 62px;
             font-size: 17px;
+            z-index: 1;
         }
         .navbar-inverse .navbar-nav .active a {
             background-color: #990000;
@@ -148,20 +150,13 @@
                         <th style="width: 20%">Car id</th>
                         <th colspan="2">Options</th>
                     </tr>
-                    <tr style="height: 35px">
-                        <td>0015467</td>
-                        <td>1234</td>
-                        <td>123</td>
-                        <td><button class="button" style="font-size: 12px">Details</button></td>
-                        <td><button class="button" style="font-size: 12px">Remove</button></td>
-                    </tr>
                     <c:forEach var="orders" items="${sessionScope.ordersList}">
                         <tr style="height: 35px">
                             <td>${orders.getOrderIdZeroFill()}</td>
-                            <td>${orders.getCustomerId().getFirstname().charAt(0)}. ${orders.getCustomerId().getLastname()}</td>
-                            <td>${orders.getCarId().getCarIdZeroFill()}</td>
-                            <td><button class="button" type="button" style="font-size: 12px">Details</button></td>
-                            <td><button class="button" type="button" style="font-size: 12px">Remove</button></td>
+                            <td>${orders.getCustomer().getFirstname().charAt(0)}. ${orders.getCustomer().getLastname()}</td>
+                            <td>${orders.getCar().getCarIdZeroFill()}</td>
+                            <td><a href="ObjectInfo?orderId=${orders.getOrderId()}&admin=true"><button class="button" type="button" style="font-size: 12px">Details</button></a></td>
+                            <td><a href="RemoveFromDb?orderId=${orders.getOrderId()}"><button class="button" type="button" style="font-size: 12px">Remove</button></a></td>
                         </tr>
                     </c:forEach>
                 </table>

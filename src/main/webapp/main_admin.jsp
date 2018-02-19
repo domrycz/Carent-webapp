@@ -16,7 +16,7 @@
         .navbar {
             background-color: #990000;
             font-family: 'Orbitron', sans-serif;
-            height: 62px;
+            min-height: 62px;
             border: none;
         }
         .navbar-brand img {
@@ -26,11 +26,13 @@
             position: absolute; top: 5px;
         }
         .navbar-nav li {
+            min-height: 62px;
             padding-bottom: 5px;
         }
         .navbar-nav a {
-            height: 62px;
+            min-height: 62px;
             font-size: 17px;
+            z-index: 1;
         }
         .navbar-inverse .navbar-nav .active a {
             background-color: #990000;
@@ -41,15 +43,10 @@
         #main_section {
             font-family: 'Orbitron', sans-serif;
         }
-        #main_section h2 {
+        #main_section h2, h3 {
             color: white;
             text-align: center;
             text-shadow: 1px 1px 2px black;
-        }
-        .new_object_form {
-            width: 70%;
-            text-align: center;
-            margin-left: 15%;
         }
 
     </style>
@@ -61,6 +58,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -81,10 +79,11 @@
 <section id="main_section">
     <div class="container-fluid">
         <div class="row">
-            <h2>Welcome in admin panel</h2>
+            <h2>Welcome in admin panel</h2><br>
             <div class="col-xs-12 col-sm-6" id="header_info">
-                <c:forEach var="headerItem" items="${header }">
-                    <c:out value="${headerItem.key }" /> : <c:out value="${headerItem.value }" />
+                <h3>Data from your header</h3>
+                <c:forEach var="headerItem" items="${header}">
+                    <c:out value="${headerItem.key}" /> : <c:out value="${headerItem.value}" />
                     <br><br>
                 </c:forEach>
             </div>

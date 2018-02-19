@@ -15,11 +15,11 @@ import java.time.LocalDate;
 public class OrderToDbServlet extends HttpServlet {
 
     @Inject
-    CarDAO carDAO;
+    private CarDAO carDAO;
     @Inject
-    CustomerDAO customerDAO;
+    private CustomerDAO customerDAO;
     @Inject
-    OrdersDAO ordersDAO;
+    private OrdersDAO ordersDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -30,15 +30,17 @@ public class OrderToDbServlet extends HttpServlet {
             Customer customer = customerDAO.getCustomerById(customerId);
             Car car = carDAO.getCarById(carId);
 
-            LocalDate startDate = LocalDate.parse(request.getParameter("startDate"), DateFormat.getDateFormat());
-            LocalDate endDate = LocalDate.parse(request.getParameter("endDate"), DateFormat.getDateFormat());
+            LocalDate startDate = LocalDate.parse(request.getParameter("startDate"), DateFormat.getDateFormat()).plusDays(1L);
+            LocalDate endDate = LocalDate.parse(request.getParameter("endDate"), DateFormat.getDateFormat()).plusDays(1L);
 
             Orders order = new Orders(customer, car, startDate, endDate);
-
             ordersDAO.addOrder(order);
+
+            request.getSession(false).removeAttribute("ordersList");
+            request.getSession(false).setAttribute("ordersList", ordersDAO.showOrders());
         }
 
-        response.sendRedirect("main_admin.jsp");
+        response.sendRedirect("orders_admin.jsp");
     }
 
 }

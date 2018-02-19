@@ -42,7 +42,7 @@ public class CustomerLoginServlet extends HttpServlet {
 
             request.getRequestDispatcher("main_customer.jsp").forward(request, response);
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("default_error.html");
         }
 
     }

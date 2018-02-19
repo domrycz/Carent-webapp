@@ -16,7 +16,7 @@
         .navbar {
             background-color: #990000;
             font-family: 'Orbitron', sans-serif;
-            height: 62px;
+            min-height: 62px;
             border: none;
         }
         .navbar-brand img {
@@ -26,11 +26,13 @@
             position: absolute; top: 5px;
         }
         .navbar-nav li {
+            min-height: 62px;
             padding-bottom: 5px;
         }
         .navbar-nav a {
-            height: 62px;
+            min-height: 62px;
             font-size: 17px;
+            z-index: 1;
         }
         .navbar-inverse .navbar-nav .active a {
             background-color: #990000;
@@ -121,19 +123,20 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 content">
                 <h2>New Order</h2><br><br>
-                <form>
+                <form action="NewOrder" method="post">
                     <fieldset>
-                        Choose the car:<br>
-                        <select name="cars">
-                            <option>Opel Astra</option>
-                            <option>Toyota Aygo</option>
-                            <option>BMW</option>
-                        </select><br><br>
+                        Choose the car:<br><br>
+                            <c:forEach var="car" items="${sessionScope.carList}">
+                                <c:if test="${car.getAvailable()}">
+                                    <input type="radio" name="car" value="${car.getCarId()}">${car.getCarIdZeroFill()} - ${car.getBrand()} ${car.getModel()}<br>
+                                </c:if>
+                            </c:forEach>
+                        <br><br>
                         <p style="font-size: 18px;">Rental period:</p><br>
                         From:<br>
-                        <input type="date" name="start_date"><br><br>
+                        <input type="date" maxlength="10" placeholder="yyyy-mm-dd" name="start_date"><br><br>
                         To:<br>
-                        <input type="date" name="end_date"><br><br>
+                        <input type="date" maxlength="10" placeholder="yyyy-mm-dd" name="end_date"><br><br>
                         <input type="submit" value="Create" id="button">
                     </fieldset>
                 </form>
@@ -141,27 +144,6 @@
             <div class="col-xs-12 col-sm-6 content">
                 <h2>Available cars</h2><br><br>
                 <table>
-                    <tr>
-                        <th style="font-size: 20px; padding-bottom: 7px">Toyota Aygo</th>
-                    </tr>
-                    <tr>
-                        <th>Segment: </th>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <th>Year: </th>
-                        <td>2016</td>
-                    </tr>
-                    <tr>
-                        <th>Engine: </th>
-                        <td>1.0 PB 69 KM</td>
-                    </tr>
-                    <tr>
-                        <th>Car number: </th>
-                        <td>01</td>
-                    </tr>
-                </table>
-                <br><br>
                 <c:forEach var="car" items="${sessionScope.carList}">
                     <c:if test="${car.getAvailable()}">
                 <table>
@@ -169,8 +151,8 @@
                         <th colspan="2" style="font-size: 20px; padding-bottom: 7px">${car.getBrand()} ${car.getModel()}</th>
                     </tr>
                     <tr>
-                        <th width="40%">Segment: </th>
-                        <td width="40%">${car.getSegment()}</td>
+                        <th width="170px">Segment: </th>
+                        <td>${car.getSegment()}</td>
                     </tr>
                     <tr>
                         <th>Year: </th>

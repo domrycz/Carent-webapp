@@ -24,5 +24,6 @@
         <url-pattern>/main_customer.jsp</url-pattern>
         <url-pattern>/cars_customer.jsp</url-pattern>
         <url-pattern>/neworder_customer.jsp</url-pattern>
+        <url-pattern>/ObjectInfo</url-pattern>
     </filter-mapping>
 </web-app>

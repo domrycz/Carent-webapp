@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Carent - Cars</title>
+    <title>CaRent (admin) - Customer Info</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredoka+One">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -43,64 +42,25 @@
         }
         #main_section {
             font-family: 'Orbitron', sans-serif;
-            color: black;
         }
-        #main_section h1 {
-            font-weight: bold;
+        #main_section h2 {
             color: white;
             text-align: center;
+            text-shadow: 1px 1px 2px black;
         }
         .table-responsive {
-            height: auto;
-            padding: 15px;
             border: none;
-        }
-        .is_available {
-            font-family: 'Fredoka One', cursive;
-            color: black;
-            text-shadow: 1px 1px #999999;
-        }
-        .not_available {
-            font-family: 'Fredoka One', cursive;
-            color: #999999;
-            text-shadow: 1px 1px black;
-        }
-        .table th, .table td {
-            padding: 5px;
         }
         td {
             color: white;
-            text-shadow: 2px 1px black;
+            text-shadow: 1px 1px black;
         }
-        .car_name {
-            float: left;
-            margin-right: 25px;
+        p {
+            color: black;
+            font-weight: bold;
             text-shadow: 1px 1px grey;
         }
-        img {
-            height: 80px;
-            width: auto;
-            float: left
-        }
-        .order_button {
-            width: 100px;
-            background-color: #b30000;
-            border-radius: 8px;
-            border: 1px #cc0000;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            color: black;
-            padding-top: 7px;
-            padding-bottom: 7px;
-            text-shadow: 1px 1px 2px grey;
-            -webkit-transition: background-color 2s;
-            transition: background-color 2s;
-        }
-        .order_button:hover {
-            background-color: #cc0000;
-            border: 1px inset #cc0000;
-        }
+
     </style>
 </head>
 <body>
@@ -118,11 +78,11 @@
             <a class="navbar-brand" href="#" id="navbar-brand"><img src="img/logo_final.jpg" class="img-rounded" alt="logo_menu" id="logo_menu"></a>
         </div>
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
-            <p class="navbar-text">Hello ${sessionScope.activeUser.getFirstname()} </p>
             <ul class="nav navbar-nav">
-                <li><a href="main_customer.jsp" title="user_profile">Your profile</a></li>
-                <li class="active"><a href="cars_customer.jsp" title="cars">Cars</a></li>
-                <li><a href="neworder_customer.jsp" title="new_order">New order</a></li>
+                <li><a href="#" title="user_profile">Admin profile</a></li>
+                <li class="active"><a href="users_admin.jsp" title="users">Users</a></li>
+                <li><a href="cars_admin.jsp" title="cars">Cars</a></li>
+                <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
                 <li><a href="logout" title="logout">Log out</a></li>
             </ul>
         </div>
@@ -130,39 +90,43 @@
 </nav>
 <section id="main_section">
     <div class="container-fluid">
-        <c:forEach var="car" items="${sessionScope.carList}">
-            <div class="col-xs-12 col-sm-6 table-responsive">
-                <h3 class="car_name">${car.getBrand()} ${car.getModel()} </h3>
-                <img src="img/${car.getModel()}.png" alt="car_photo">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 table-responsive" id="header_info">
+                <h2>Customer Info</h2><br>
                 <table class="table">
                     <tr>
-                        <th>Segment: </th>
-                        <td>${car.getSegment()}</td>
-                        <td rowspan="2" style="text-align: center; padding-top: 17px;">
-                            <c:if test="${car.getAvailable()}">
-                                <h4 class="is_available">AVAILABLE</h4>
-                            </c:if>
-                            <c:if test="${!car.getAvailable()}">
-                                <h4 class="not_available">OCCUPIED</h4>
-                            </c:if>
-                        </td>
+                        <th>Customer id</th>
+                        <td>${customer.getCustomerIdZeroFill()}</td>
                     </tr>
                     <tr>
-                        <th>Year: </th>
-                        <td>${car.getYearProd()}</td>
+                        <th>First Name</th>
+                        <td>${customer.getFirstname()}</td>
                     </tr>
                     <tr>
-                        <th>Engine: </th>
-                        <td>${car.getEngine()}</td>
-                        <td rowspan="2" style="text-align: center; padding-top: 20px;"><a href="neworder_customer.jsp"><button class="order_button" type="button">Order now!</button></a></td>
+                        <th>Last Name</th>
+                        <td>${customer.getLastname()}</td>
                     </tr>
                     <tr>
-                        <th>Car number: </th>
-                        <td>${car.getCarIdZeroFill()}</td>
+                        <th>Driver Licence release date</th>
+                        <td>${customer.getDriverLicDate()}</td>
+                    </tr>
+                    <tr>
+                        <th>ID number</th>
+                        <td>${customer.getIdNumber()}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>${customer.getEmail()}</td>
                     </tr>
                 </table>
+                <br>
             </div>
-        </c:forEach>
+            <div class="col-xs-12 col-sm-6">
+                <h2>Notes</h2><br>
+                <p>This is the space for additional notes e.g. user policy</p>
+                <br>
+            </div>
+        </div>
     </div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

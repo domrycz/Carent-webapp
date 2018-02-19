@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CaRent (admin) - Cars</title>
+    <title>CaRent - Edit order</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -48,53 +48,40 @@
             text-align: center;
             text-shadow: 1px 1px 2px black;
         }
-        .button {
+        #button {
             background-color: #b30000;
+            width: 80px;
             border-radius: 8px;
-            border: 1px solid #b30000;
+            border: 1px #cc0000;
             font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             color: black;
-            padding-top: 2px;
-            padding-bottom: 2px;
+            padding-top: 7px;
+            padding-bottom: 7px;
             text-shadow: 1px 1px 2px grey;
             -webkit-transition: background-color 2s;
             transition: background-color 2s;
         }
-        .button:hover {
+        #button:hover {
             background-color: #cc0000;
-            border: 1px inset #990000;
-        }
-        #new_object_form {
-            width: 70%;
-            text-align: center;
-            margin-left: 15%;
-            font-weight: bold;
-        }
-        input {
-            background-color: #ffcccc;
-            margin: 5px 0;
+            border: 1px inset #cc0000;
         }
         .table-responsive {
             border: none;
         }
-        table {
-            width: 90%;
-            font-size: 16px;
+        td {
+            color: white;
+            text-shadow: 1px 1px black;
         }
-        table, tr, td, th{
-            border: 3px solid white;
+        form {
             text-align: center;
         }
-        th, td {
-            padding: 3px 7px;
+        p {
+            color: black;
+            font-weight: bold;
+            text-shadow: 1px 1px grey;
         }
-        td {
-            font-size: 14px;
-        }
-
-
     </style>
 </head>
 <body>
@@ -107,15 +94,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" id="navbar-brand"><img src="img/logo_final.jpg" class="img-rounded" alt="logo_menu" id="logo_menu"></a>
         </div>
         <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="main_admin.jsp" title="user_profile">Admin profile</a></li>
-                <li><a href="users_admin.jsp" title="users">Users</a></li>
-                <li class="active"><a href="#" title="cars">Cars</a></li>
-                <li><a href="orders_admin.jsp" title="new_order">Orders</a></li>
+                <l><a href="main_customer.jsp" title="user_profile">Your profile</a></l>
+                <li><a href="cars_customer.jsp" title="cars">Cars</a></li>
+                <li class="active"><a href="neworder_customer.jsp" title="new_order">New order</a></li>
                 <li><a href="logout" title="logout">Log out</a></li>
             </ul>
         </div>
@@ -124,48 +111,54 @@
 <section id="main_section">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-sm-5">
-                <table style="width: 100%">
-                    <caption><h2>Add new Car</h2></caption>
+            <div class="col-xs-12 col-sm-6 table-responsive" id="header_info">
+                <h2>Order Info</h2><br>
+                <table class="table">
+                    <tr>
+                        <th>Order id</th>
+                        <td>${order.getOrderIdZeroFill()}</td>
+                    </tr>
+                    <tr>
+                        <th>Car id</th>
+                        <td>${order.getCar().getCarIdZeroFill()}</td>
+                    </tr>
+                    <tr>
+                        <th>Car data</th>
+                        <td>${order.getCar().getBrand()} ${order.getCar().getModel()}</td>
+                    </tr>
+                    <tr>
+                        <th>Start of rent date</th>
+                        <td>${order.getStartDate()}</td>
+                    </tr>
+                    <tr>
+                        <th>End of rent date</th>
+                        <td>${order.getEndDate()}</td>
+                    </tr>
                 </table>
-                <form action="CarToDb" method="post" id="new_object_form">
+                <br>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <h2>Enter new data</h2><br>
+                <form action="EditOrder" method="post">
                     <fieldset>
-                        Brand:<br>
-                        <input type="text" name="brand" maxlength="20" required><br>
-                        Model:<br>
-                        <input type="text" name="model" maxlength="20" required><br>
-                        Production Year:<br>
-                        <input type="number" name="yearProd" placeholder="YYYY" min="2000" max="2018" required><br>
-                        Engine:<br>
-                        <input type="text" name="engine" placeholder="1.0 PB 50KM" maxlength="20" required><br>
-                        Segment:<br>
-                        <input type="text" name="segment" placeholder="A" maxlength="1" required><br>
+                        <p style="font-size: 16px;">Order Id:</p><br>
+                        <input type="text" name="orderId" value="${order.getOrderId()}" readonly><br><br>
+                        <p style="font-size: 16px;">Choose the car:</p><br>
+                        <c:forEach var="car" items="${sessionScope.carList}">
+                            <c:if test="${car.getAvailable()}">
+                                <input type="radio" name="carId" value="${car.getCarId()}">${car.getCarIdZeroFill()} - ${car.getBrand()} ${car.getModel()}<br>
+                            </c:if>
+                        </c:forEach>
                         <br>
-                        <input class="button" type="submit" value="Add Car">
-                        <br>
+                        <p style="font-size: 16px;">Rental period:</p><br>
+                        From:<br>
+                        <input type="date" name="start_date"><br><br>
+                        To:<br>
+                        <input type="date" name="end_date"><br><br>
+                        <input type="submit" value="Change" id="button">
                     </fieldset>
                 </form>
-            </div>
-            <div class="col-xs-12 col-sm-7 table-responsive">
-                <table class="table">
-                    <caption><h2>Cars</h2></caption>
-                    <tr style="font-size: 18px">
-                        <th style="width: 10%">id</th>
-                        <th style="width: 20%">Brand</th>
-                        <th style="width: 20%">Model</th>
-                        <th style="width: 25%">Engine</th>
-                        <th>Details</th>
-                    </tr>
-                    <c:forEach var="car" items="${sessionScope.carList}">
-                    <tr style="height: 45px">
-                        <td>${car.getCarIdZeroFill()}</td>
-                        <td>${car.getBrand()}</td>
-                        <td>${car.getModel()}</td>
-                        <td>${car.getEngine()}</td>
-                        <td><a href="ObjectInfo?carId=${car.getCarId()}"><button class="button" style="font-size: 12px">Show</button></a></td>
-                    </tr>
-                    </c:forEach>
-                </table>
+                <br>
             </div>
         </div>
     </div>

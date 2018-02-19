@@ -16,7 +16,7 @@
         .navbar {
             background-color: #990000;
             font-family: 'Orbitron', sans-serif;
-            height: 62px;
+            min-height: 62px;
             border: none;
         }
         .navbar-brand img {
@@ -26,11 +26,13 @@
             position: absolute; top: 5px;
         }
         .navbar-nav li {
+            min-height: 62px;
             padding-bottom: 5px;
         }
         .navbar-nav a {
-            height: 62px;
+            min-height: 62px;
             font-size: 17px;
+            z-index: 1;
         }
         .navbar-inverse .navbar-nav .active a {
             background-color: #990000;
@@ -101,6 +103,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" id="navbar-brand"><img src="img/logo_final.jpg" class="img-rounded" alt="logo_menu" id="logo_menu"></a>
         </div>
@@ -129,8 +132,7 @@
                         Last Name:<br>
                         <input type="text" name="lastname" maxlength="40" required><br>
                         Release of driver license (yyyy-mm-dd):<br>
-                        <input type="text" name="driverLicDate" maxlength="10" placeholder="yyyy-mm-dd" required><br>
-                        <!-- TODO: make a regex for date checking -->
+                        <input type="text" name="driverLicDate" maxlength="10" pattern="((19\d{2}|201\d|200\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))" placeholder="yyyy-mm-dd" required><br>
                         ID number:<br>
                         <input type="text" name="idNumber" maxlength="20" required><br>
                         Password:<br>
@@ -155,20 +157,13 @@
                         <th style="width: 30%">Last Name</th>
                         <th colspan="2">Options</th>
                     </tr>
-                    <tr style="height: 43px">
-                        <td>0082</td>
-                        <td>Johnattan</td>
-                        <td>Kowalskiewicz</td>
-                        <td><button class="button" style="font-size: 12px">View details</button></td>
-                        <td><button class="button" style="font-size: 12px">Remove</button></td>
-                    </tr>
                     <c:forEach var="customer" items="${sessionScope.customerList}">
                         <tr style="height: 43px">
                             <td>${customer.getCustomerIdZeroFill()}</td>
                             <td>${customer.firstname}</td>
                             <td>${customer.lastname}</td>
-                            <td><button class="button" style="font-size: 12px">View details</button></td>
-                            <td><button class="button" style="font-size: 12px">Remove</button></td>
+                            <td><a href="ObjectInfo?customerId=${customer.getCustomerId()}"><button class="button" style="font-size: 12px">View details</button></a></td>
+                            <td><a href="RemoveFromDb?customerId=${customer.getCustomerId()}"><button class="button" style="font-size: 12px">Remove</button></a></td>
                         </tr>
                     </c:forEach>
                 </table>
